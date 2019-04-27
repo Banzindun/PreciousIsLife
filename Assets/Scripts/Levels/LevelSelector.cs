@@ -24,17 +24,16 @@ public class LevelSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Mouse entered ");
+
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("Mouse exited ");
+
     }
 
     public void OnPointerClick(PointerEventData eventData)
-    {
-        Debug.Log("Mouse clicked.");
+    { 
         OnClickEvent.Invoke();
     }
 }

@@ -111,14 +111,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40045fec50ae90d409ae072f697e3aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 0
+  definition: {fileID: 11400000, guid: d36815fd1e15afa43824df763d827d0f, type: 2}
+  name: 
   type: 0
   hP: 0
   level: 0
   attackValue: 0
   initiative: 0
   alive: 0
-  template: {fileID: 114634274234859420}
 --- !u!222 &222067588949280914
 CanvasRenderer:
   m_ObjectHideFlags: 1

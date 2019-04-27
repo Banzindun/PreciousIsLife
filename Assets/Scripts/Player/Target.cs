@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[SerializeField]
+[System.Serializable]
 public class Target {
+
+    public enum TargetTeam {
+        ENEMY,
+        FRIEND
+    }
+
+    public TargetTeam targetTeam;
 
     public enum TargetType
     {
@@ -11,11 +18,15 @@ public class Target {
         SINGLE
     };
 
-    public TargetType Type;
+    public TargetType targetType;
 
-    // Target can be enemy
-    // Target can be multiple enemies
-    // Should have TargetType stored
+    List<Card> targetCards;
 
+    public void addTarget(Card card) {
+        targetCards.Add(card);
+    }
 
+    public List<Card> getTargets() {
+        return targetCards;
+    }
 }

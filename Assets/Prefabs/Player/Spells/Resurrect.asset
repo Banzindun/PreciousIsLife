@@ -8,13 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a662c2873e91a4489d988e1f7c23de, type: 3}
-  m_Name: Ranger
+  m_Script: {fileID: 11500000, guid: 9996de297aa744f42830bb50c7cbbf70, type: 3}
+  m_Name: Resurrect
   m_EditorClassIdentifier: 
-  type: 1
-  name: Ranger
-  hP: 100
-  level: 1
-  attackValue: 10
-  initiative: 5
-  template: {fileID: 114634274234859420, guid: 4bbe4768107a7b34e8da027dd4d46064, type: 2}
+  targetType: 0
+  HealthCost: 0
