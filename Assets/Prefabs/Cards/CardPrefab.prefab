@@ -65,7 +65,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -111,14 +111,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40045fec50ae90d409ae072f697e3aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  definition: {fileID: 11400000, guid: d36815fd1e15afa43824df763d827d0f, type: 2}
-  name: 
-  type: 0
-  hP: 0
-  level: 0
-  attackValue: 0
-  initiative: 0
-  alive: 0
+  name: Ranger
+  type: 2
+  hP: 100
+  level: 1
+  attackValue: 10
+  initiative: 5
+  alive: 1
+  gamerTeam: 1
 --- !u!222 &222067588949280914
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -150,7 +150,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 183.06, y: 100}
+  m_SizeDelta: {x: 350, y: 230}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224468208431937420
 RectTransform:
@@ -168,5 +168,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.67, y: -0.12}
-  m_SizeDelta: {x: 172.14, y: 91.06}
+  m_SizeDelta: {x: 330, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}

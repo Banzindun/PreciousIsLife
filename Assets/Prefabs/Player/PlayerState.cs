@@ -4,9 +4,9 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class PlayerState : ScriptableObject {
-    private Card[] myCards;
+    private CardDefinition[] myCards;
 
-    public Card[] MyCards {
+    public CardDefinition[] MyCards {
         set
         {
             myCards = value;
@@ -17,7 +17,6 @@ public class PlayerState : ScriptableObject {
             return myCards;
 
         }
-
     }
 
 

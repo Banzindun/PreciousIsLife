@@ -5,6 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "level.asset", menuName = "Game/Level")]
 public class Level : ScriptableObject {
 
-    public Card[] cardsToBeSpawned;
+    public CardDefinition[] cardsToBeSpawned;
 
 }

@@ -30,13 +30,13 @@ public class GameManager : MonoBehaviour {
         ShowPlayerSummonDialog();
     }
 
-    private void SpawnEnemyMonsters(Card[] enemyCards)
+    private void SpawnEnemyMonsters(CardDefinition[] enemyCards)
     {
         // player.Cards = list of spawned cards
         throw new NotImplementedException();
     }
 
-    private void SpawnPlayerMonsters(Card[] enemyCards)
+    private void SpawnPlayerMonsters(CardDefinition[] playerCards)
     {
         // enemy.Cards = list of spawned cards
         throw new NotImplementedException();

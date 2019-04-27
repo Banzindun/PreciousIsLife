@@ -22,7 +22,7 @@ public class BoardPlayer : MonoBehaviour {
 
         for (int i = 0; i < Cards.Count; i++)
         {
-            Cards[i].definition.OnNewTurn();
+            Cards[i].cardDefinition.OnNewTurn();
         }
     }
 	

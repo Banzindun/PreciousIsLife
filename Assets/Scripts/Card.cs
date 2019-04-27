@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Card : MonoBehaviour
 {
     /* Card options */
-    public CardDefinition definition;
+    public CardDefinition cardDefinition;
     public string name;
     public CardTypes.Type type;
     public int hP;
@@ -16,16 +16,17 @@ public class Card : MonoBehaviour
     public int initiative;
     public bool alive;
     public bool gamerTeam;
-    public GameObject imageObject;
+    public static GameObject imageObject;
     public Sprite pic1;
     public Sprite pic2;
 
-    // Owner of the card
-    public BoardPlayer owner; 
+    public BoardPlayer owner;
 
     /* Set the starting parameters according to the card class definition */
     private void setCardDefinition(CardDefinition cardDefinition)
     {
+        this.cardDefinition = cardDefinition;
+        
         name = cardDefinition.name;
         type = cardDefinition.type;
         hP = cardDefinition.hP;
@@ -38,21 +39,22 @@ public class Card : MonoBehaviour
     }
 
     /* Set the map parameters and place it on the stage */
-    public void Summon(CardDefinition cardDefinition)
+    public static GameObject Summon(CardDefinition cardDefinition)
     {
-        definition = cardDefinition;
-
         Card cardTemplate = cardDefinition.template;
-        Instantiate(cardTemplate, new Vector3(0, 0, 0), Quaternion.identity);
+        cardTemplate.gameObject.name = cardDefinition.name;
+        GameObject card = Instantiate(cardTemplate).gameObject;
 
         cardTemplate.setCardDefinition(cardDefinition);
         cardTemplate.alive = true;
 
-        Image backgroundCardImage = cardTemplate.GetComponent<Image>();
+        /*Image backgroundCardImage = cardTemplate.GetComponent<Image>();
         backgroundCardImage.sprite = pic1;
 
         Image frontCardImage = imageObject.GetComponent<Image>();
-        frontCardImage.sprite = pic2;
+        frontCardImage.sprite = pic2;*/
+
+        return card;
     }
 
     /* Methods for changing the parameters of the card during the game */
@@ -76,10 +78,9 @@ public class Card : MonoBehaviour
     {
         alive = false;
 
+        // Tell the owner to remove the card
         owner.RemoveCard(this);
     }
-
-    
 
     // Update is called once per frame
     void Update ()
