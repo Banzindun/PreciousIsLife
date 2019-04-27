@@ -11,4 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 289d969d7fa746d4fa52dff4821d53ee, type: 3}
   m_Name: SampleLevel
   m_EditorClassIdentifier: 
-  cardsToBeSpawned: []
+  cardsToBeSpawned:
+  - {fileID: 11400000, guid: d36815fd1e15afa43824df763d827d0f, type: 2}
+  - {fileID: 11400000, guid: d36815fd1e15afa43824df763d827d0f, type: 2}
+  - {fileID: 11400000, guid: d36815fd1e15afa43824df763d827d0f, type: 2}
+  - {fileID: 11400000, guid: d36815fd1e15afa43824df763d827d0f, type: 2}
+  - {fileID: 11400000, guid: d36815fd1e15afa43824df763d827d0f, type: 2}
+  - {fileID: 11400000, guid: d36815fd1e15afa43824df763d827d0f, type: 2}
