@@ -10,6 +10,8 @@ public class SpellManager {
 
     public PlayerController player;
 
+
+
     public SpellManager(PlayerController pc) {
         player = pc;
     }
@@ -27,7 +29,6 @@ public class SpellManager {
 
         // What other requirements??
         // Check the availability there
-
 
         return true;
     }

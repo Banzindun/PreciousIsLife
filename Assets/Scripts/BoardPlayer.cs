@@ -15,6 +15,8 @@ public class BoardPlayer : MonoBehaviour {
     virtual public void RemoveCard(Card card) {
         // Removes a card from list of cards
         Cards.Remove(card);
+
+
     }
 
     public void NewTurn(int turnNumber) {
@@ -25,5 +27,13 @@ public class BoardPlayer : MonoBehaviour {
             Cards[i].cardDefinition.OnNewTurn();
         }
     }
+
+    /// <summary>
+    /// Will be called onec the battle ends.
+    /// </summary>
+    virtual public void OnBattleEnd() {
+
+    }
+
 	
 }

@@ -16,6 +16,7 @@ Spells:
 - Single damage
 - Mass damage
 - Ressurect
+One spell per turn.
 
 There are about 3 enemy types with variations to them and one boss.
 
@@ -35,11 +36,11 @@ Rock, Paper and Scissors battle mechanics (units)
 
 Units have health, initiative, damage .. if something is blocking the damage is reduced
 
-You select to attack, block or wait for the creatures
+You select to attack, block or wait for the creatures.
 
-The player looses when he looses all the units
+The player looses when he looses all the units.
 
-The player cannot cast spells if he doesn't have enough health
+The player cannot cast spells if he doesn't have enough health.
 
 At the start you summon first monster (out of 3).
 
@@ -47,3 +48,4 @@ At the end of the round you can resurrect fallen friends (with all the upgrades)
 
 At the start of the round you can summon new one.
 
+ [] Polish edges of the "Actions menu", I cannot put the cards there properly without the background beeing visible.

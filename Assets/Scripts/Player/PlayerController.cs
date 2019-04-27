@@ -10,15 +10,11 @@ public class PlayerController : BoardPlayer
 
     public SpellManager SpellManager;
 
-    public MonsterManager MonsterManager;
-
     public int Health;
-
-    public List<Card> RessurectableCards;
     
     // Use this for initialization
     void Start () {
-        MonsterManager = new MonsterManager();
+
     }
 	
 	// Update is called once per frame
@@ -42,7 +38,24 @@ public class PlayerController : BoardPlayer
 
     override public void RemoveCard(Card card)
     {
+        // I do not remove cards for the player
         base.RemoveCard(card);
-        RessurectableCards.Add(card);
+        
+    }
+
+
+    public override void OnBattleEnd()
+    {
+        base.OnBattleEnd();
+
+        List<CardDefinition> cardDefs = new List<CardDefinition>();
+
+        // Save all the player cards
+        foreach (Card card in Cards) {
+            cardDefs.Add(CardDefinition.Create(card));
+        }
+
+        playerState.MyCards = cardDefs.ToArray();
+        playerState.Health = Health;
     }
 }

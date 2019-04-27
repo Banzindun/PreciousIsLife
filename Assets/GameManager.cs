@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour {
 
     public CardSpawner cardSpawner;
 
+    // Dialog for summoning and upgrades
+    GameObject exorcismDialog;
+
     // Use this for initialization
     void Start()
     {
@@ -23,7 +26,6 @@ public class GameManager : MonoBehaviour {
 
         // Initialize the player
         player.SetState(GameSettings.PlayerState);
-        player.GameManager = this;
 
         SpawnPlayerMonsters(GameSettings.PlayerState.MyCards);
         SpawnEnemyMonsters(nextLevel.cardsToBeSpawned);
@@ -51,7 +53,8 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-        // TODO: show the dialog
+        exorcismDialog.SetActive(true);
+        // TODO disable player
     }
 
     public void OnPlayerSummonDialogClosed() {
@@ -128,6 +131,11 @@ public class GameManager : MonoBehaviour {
             // Should call ActionDone when finished
             enemy.MakeAction(player);
         }
+    }
+
+
+    public void BattleFinished() {
+
     }
 
     // Update is called once per frame

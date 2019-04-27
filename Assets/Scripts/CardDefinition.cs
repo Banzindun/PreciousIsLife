@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,5 +23,20 @@ public class CardDefinition : ScriptableObject
     // Function called on each card after a new turn
     public void OnNewTurn() {
 
+    }
+
+    internal static CardDefinition Create(Card card)
+    {
+        CardDefinition def = new CardDefinition();
+        def.type = card.type;
+        def.name = card.name;
+        def.hP = card.hP;
+        def.level = card.level;
+        def.attackValue = card.attackValue;
+        def.template = card.cardDefinition.template;
+        def.gamerTeam = card.gamerTeam;
+        def.pic1 = card.pic1;
+        def.pic2 = card.pic2;
+        return def;
     }
 }

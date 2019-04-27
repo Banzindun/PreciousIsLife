@@ -84,6 +84,10 @@ public class Card : MonoBehaviour
         owner.RemoveCard(this);
     }
 
+    public CardDefinition GetCardDefinitionSignature() {
+        return CardDefinition.Create(this);
+    }
+
     // Update is called once per frame
     void Update ()
     {
