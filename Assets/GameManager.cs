@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour {
     }
 
 
-    public void SpawnMonsters(Card[] enemyCards, Card[] myCards) {
+    public void SpawnMonsters(CardDefinition[] enemyCards, Card[] myCards) {
         // TODO
     }
 
