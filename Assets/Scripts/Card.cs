@@ -17,8 +17,8 @@ public class Card : MonoBehaviour
     public bool alive;
     public bool gamerTeam;
     public static GameObject imageObject;
-    public Sprite pic1;
-    public Sprite pic2;
+    public static Sprite pic1;
+    public static Sprite pic2;
 
     public BoardPlayer owner;
 
@@ -34,6 +34,7 @@ public class Card : MonoBehaviour
         attackValue = cardDefinition.attackValue;
         initiative = cardDefinition.initiative;
         gamerTeam = cardDefinition.gamerTeam;
+        imageObject = cardDefinition.imageObject;
         pic1 = cardDefinition.pic1;
         pic2 = cardDefinition.pic2;
     }
@@ -50,11 +51,11 @@ public class Card : MonoBehaviour
         card.owner = owner;
         card.alive = true;
 
-        /*Image backgroundCardImage = cardTemplate.GetComponent<Image>();
+        Image backgroundCardImage = cardTemplate.GetComponent<Image>();
         backgroundCardImage.sprite = pic1;
 
         Image frontCardImage = imageObject.GetComponent<Image>();
-        frontCardImage.sprite = pic2;*/
+        frontCardImage.sprite = pic2;
 
         return card.gameObject;
     }

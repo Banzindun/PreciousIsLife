@@ -65,7 +65,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -92,7 +92,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -112,16 +112,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardDefinition: {fileID: 0}
-  name: Ranger
+  name: 
   type: 2
-  hP: 100
-  level: 1
-  attackValue: 10
-  initiative: 5
-  alive: 1
-  gamerTeam: 1
-  pic1: {fileID: 0}
-  pic2: {fileID: 0}
+  hP: 0
+  level: 0
+  attackValue: 0
+  initiative: 0
+  alive: 0
+  gamerTeam: 0
   owner: {fileID: 0}
 --- !u!222 &222067588949280914
 CanvasRenderer:

@@ -19,5 +19,7 @@ MonoBehaviour:
   initiative: 5
   template: {fileID: 114634274234859420, guid: 4bbe4768107a7b34e8da027dd4d46064, type: 2}
   gamerTeam: 1
-  pic1: {fileID: 0}
-  pic2: {fileID: 0}
+  imageObject: {fileID: 1825550309102680, guid: 4bbe4768107a7b34e8da027dd4d46064,
+    type: 2}
+  pic1: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  pic2: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
