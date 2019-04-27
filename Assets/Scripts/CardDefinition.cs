@@ -39,8 +39,8 @@ public class CardDefinition : ScriptableObject
         def.attackValue = card.attackValue;
         def.template = card.cardDefinition.template;
         def.gamerTeam = card.gamerTeam;
-        def.pic1 = card.pic1;
-        def.pic2 = card.pic2;
+        def.backgroundImage = card.backgroundImage;
+        def.mainImage = card.mainImage;
         return def;
     }
 }

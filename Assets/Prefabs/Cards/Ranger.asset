@@ -19,7 +19,10 @@ MonoBehaviour:
   initiative: 5
   template: {fileID: 114634274234859420, guid: 4bbe4768107a7b34e8da027dd4d46064, type: 2}
   gamerTeam: 1
-  imageObject: {fileID: 1825550309102680, guid: 4bbe4768107a7b34e8da027dd4d46064,
+  mainImageGO: {fileID: 1825550309102680, guid: 4bbe4768107a7b34e8da027dd4d46064,
     type: 2}
-  pic1: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  pic2: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  typeImageGO: {fileID: 1929113806663590, guid: 4bbe4768107a7b34e8da027dd4d46064,
+    type: 2}
+  backgroundImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  mainImage: {fileID: 21300000, guid: b1712f7247af40840b98b63696d7ad71, type: 3}
+  typeImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

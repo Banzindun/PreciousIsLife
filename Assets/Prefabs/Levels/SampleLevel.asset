@@ -13,6 +13,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardsToBeSpawned:
   - {fileID: 11400000, guid: d36815fd1e15afa43824df763d827d0f, type: 2}
-  - {fileID: 11400000, guid: d36815fd1e15afa43824df763d827d0f, type: 2}
-  - {fileID: 11400000, guid: d36815fd1e15afa43824df763d827d0f, type: 2}
-  - {fileID: 11400000, guid: d36815fd1e15afa43824df763d827d0f, type: 2}

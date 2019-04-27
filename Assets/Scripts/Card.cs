@@ -18,11 +18,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public int initiative;
     public bool alive;
     public bool gamerTeam;
-    public static GameObject mainImageGO;
-    public static GameObject typeImageGO;
-    public static Sprite backgroundImage;
-    public static Sprite mainImage;
-    public static Sprite typeImage;
+    public GameObject mainImageGO;
+    public GameObject typeImageGO;
+    public Sprite backgroundImage;
+    public Sprite mainImage;
+    public Sprite typeImage;
     public BoardPlayer owner;
 
     /* Set the starting parameters according to the card class definition */
@@ -56,14 +56,16 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         card.owner = owner;
         card.alive = true;
 
+    
+
         Image backgroundCardImage = cardTemplate.GetComponent<Image>();
-        backgroundCardImage.sprite = backgroundImage;
+        backgroundCardImage.sprite = card.backgroundImage;
 
-        Image frontCardImage = mainImageGO.GetComponent<Image>();
-        frontCardImage.sprite = mainImage;
+        Image frontCardImage = card.mainImageGO.GetComponent<Image>();
+        frontCardImage.sprite = card.mainImage;
 
-        Image typeCardImage = typeImageGO.GetComponent<Image>();
-        typeCardImage.sprite = typeImage;
+        Image typeCardImage = card.typeImageGO.GetComponent<Image>();
+        typeCardImage.sprite = card.typeImage;
 
         return card.gameObject;
     }
