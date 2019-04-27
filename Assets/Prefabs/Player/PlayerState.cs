@@ -4,6 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class PlayerState : ScriptableObject {
+    [SerializeField]
     private CardDefinition[] myCards;
 
     public CardDefinition[] MyCards {
