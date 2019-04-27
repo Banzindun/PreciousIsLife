@@ -2284,15 +2284,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawnPoints:
-  - {fileID: 1633890656}
   - {fileID: 284319160}
+  - {fileID: 1633890656}
   - {fileID: 1458209321}
-  - {fileID: 688236631}
   - {fileID: 1662148184}
+  - {fileID: 688236631}
   - {fileID: 1732522823}
   playerSpawnPoints:
-  - {fileID: 1978132314}
   - {fileID: 1615627220}
+  - {fileID: 1978132314}
   - {fileID: 798573289}
 --- !u!1 &980538090
 GameObject:

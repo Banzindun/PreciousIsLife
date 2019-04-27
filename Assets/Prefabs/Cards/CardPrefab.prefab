@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114204477174253148}
   - component: {fileID: 114634274234859420}
   m_Layer: 0
-  m_Name: Ranger
+  m_Name: CardPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,10 +101,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 35010c7dfb05e54479a9ad09c19c146b, type: 3}
-    m_FontSize: 60
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 6
+    m_MinSize: 5
     m_MaxSize: 300
     m_Alignment: 1
     m_AlignByGeometry: 1
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardDefinition: {fileID: 0}
-  n: {fileID: 114151235881251702}
+  nameLabel: {fileID: 114151235881251702}
   name: 
   type: 0
   hP: 0
@@ -217,8 +217,8 @@ MonoBehaviour:
   initiative: 0
   alive: 0
   gamerTeam: 0
-  mainImageGO: {fileID: 0}
-  typeImageGO: {fileID: 0}
+  mainImageGO: {fileID: 1825550309102680}
+  typeImageGO: {fileID: 1929113806663590}
   backgroundImage: {fileID: 0}
   mainImage: {fileID: 0}
   typeImage: {fileID: 0}

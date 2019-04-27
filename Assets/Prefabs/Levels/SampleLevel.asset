@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Name: SampleLevel
   m_EditorClassIdentifier: 
   cardsToBeSpawned:
-  - {fileID: 11400000, guid: d36815fd1e15afa43824df763d827d0f, type: 2}
+  - {fileID: 11400000, guid: 37dcf751cd73bd64eb3c893da08ba070, type: 2}
+  - {fileID: 11400000, guid: 37dcf751cd73bd64eb3c893da08ba070, type: 2}
+  - {fileID: 11400000, guid: 37dcf751cd73bd64eb3c893da08ba070, type: 2}
+  - {fileID: 11400000, guid: 37dcf751cd73bd64eb3c893da08ba070, type: 2}
