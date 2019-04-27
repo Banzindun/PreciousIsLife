@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
-
-    public CardDefinition definition;
+    //public CardDefinition definition;
 
     public string name;
     public CardTypes.Type type;
@@ -15,81 +14,62 @@ public class Card : MonoBehaviour
     public int level;
     public int attackValue;
     public int initiative;
-
     public bool alive;
-    
+    public bool gamerTeam;
+    public GameObject imageObject;
+    public Sprite pic1;
+    public Sprite pic2;
 
+    private void setCardDefinition(CardDefinition cardDefinition)
+    {
+        name = cardDefinition.name;
+        type = cardDefinition.type;
+        hP = cardDefinition.hP;
+        level = cardDefinition.level;
+        attackValue = cardDefinition.attackValue;
+        initiative = cardDefinition.initiative;
+        gamerTeam = cardDefinition.gamerTeam;
+        pic1 = cardDefinition.pic1;
+        pic2 = cardDefinition.pic2;
+    }
 
-    public void SetType (CardTypes.Type newType)
-    {
-        type = newType;
-    }
-    public void SetHP (int value)
-    {
-        hP = value;
-    }
-    public void SetLevel (int value)
-    {
-        level = value;
-    }
-    public void SetAttackValue (int value)
-    {
-        attackValue = value;
-    }
-    public void SetInitiative (int value)
-    {
-        initiative = value;
-    }
-    public void SetAliveStatus(bool newStatus)
-    {
-        alive = newStatus;
-    }
-    public void SetImage(Text imageName)
-    {
-
-    }
 
     // Action methods
-    public static void Summon(CardDefinition def)
+    public void Summon(CardDefinition cardDefinition)
     {
-        Card cardTemplate = def.template;
+        Card cardTemplate = cardDefinition.template;
         Instantiate(cardTemplate, new Vector3(0, 0, 0), Quaternion.identity);
 
-        cardTemplate.setCardDefinition(def);
-        cardTemplate.SetAliveStatus(true);
-    }
+        cardTemplate.setCardDefinition(cardDefinition);
+        cardTemplate.alive = true;
 
-    private void setCardDefinition(CardDefinition def)
-    {
-        name = def.name;
-        type = def.type;
-        hP = def.hP;
-        level = def.level;
-        attackValue = def.attackValue;
-        initiative = def.initiative;
+        Image backgroundCardImage = cardTemplate.GetComponent<Image>();
+        backgroundCardImage.sprite = pic1;
+
+        Image frontCardImage = imageObject.GetComponent<Image>();
+        frontCardImage.sprite = pic2;
     }
 
     public void Heal (int value)
     {
-
+        hP = hP + value;
     }
     public void Damage (int value)
     {
-
+        hP = hP - value;
     }
     public void LevelUp()
     {
-
+        level++;
     }
     public void Revival()
     {
-
+        alive = true;
     }
     public void Death()
     {
-
+        alive = false;
     }
-
 
     // Use this for initialization
     void Start ()
@@ -101,7 +81,5 @@ public class Card : MonoBehaviour
     void Update ()
     {
 
-       
-
-}
+    }
 }
