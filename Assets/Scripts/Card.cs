@@ -10,6 +10,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     /* Card options */
     public CardDefinition cardDefinition;
     public Text nameLabel;
+    public Text hPLabel;
     public string name;
     public CardTypes.Type type;
     public int hP;
@@ -48,6 +49,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         typeImage = cardDefinition.typeImage;
 
         nameLabel.text = name;
+        hPLabel.text = hP.ToString();
     }
 
     /* Set the map parameters and place it on the stage */
