@@ -9,15 +9,13 @@ He fights fairies and elfs who think he is a monster and he doesn't deserve to h
 
 The blood/lifeforce is one meter across all battles.
 
-Mechanics:
-	Lifeforce
-	Spells
-		Summon
-		Single heal
-		Mass heal
-		Single damage
-		Mass damage
-		Ressurect
+Spells:
+- Summon
+- Single heal
+- Mass heal
+- Single damage
+- Mass damage
+- Ressurect
 
 There are about 3 enemy types with variations to them and one boss.
 
