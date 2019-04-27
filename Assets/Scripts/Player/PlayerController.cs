@@ -18,7 +18,6 @@ public class PlayerController : BoardPlayer
     
     // Use this for initialization
     void Start () {
-        SpellManager = new SpellManager(this);
         MonsterManager = new MonsterManager();
     }
 	

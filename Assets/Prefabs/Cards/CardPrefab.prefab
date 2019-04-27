@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114204477174253148}
   - component: {fileID: 114634274234859420}
   m_Layer: 0
-  m_Name: CardPrefab
+  m_Name: Ranger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40045fec50ae90d409ae072f697e3aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardDefinition: {fileID: 0}
   name: Ranger
   type: 2
   hP: 100
@@ -119,6 +120,9 @@ MonoBehaviour:
   initiative: 5
   alive: 1
   gamerTeam: 1
+  pic1: {fileID: 0}
+  pic2: {fileID: 0}
+  owner: {fileID: 0}
 --- !u!222 &222067588949280914
 CanvasRenderer:
   m_ObjectHideFlags: 1

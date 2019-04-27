@@ -39,14 +39,16 @@ public class Card : MonoBehaviour
     }
 
     /* Set the map parameters and place it on the stage */
-    public static GameObject Summon(CardDefinition cardDefinition)
+    public static GameObject Summon(BoardPlayer owner, CardDefinition cardDefinition)
     {
         Card cardTemplate = cardDefinition.template;
         cardTemplate.gameObject.name = cardDefinition.name;
-        GameObject card = Instantiate(cardTemplate).gameObject;
 
-        cardTemplate.setCardDefinition(cardDefinition);
-        cardTemplate.alive = true;
+        Card card = Instantiate(cardTemplate);
+        
+        card.setCardDefinition(cardDefinition);
+        card.owner = owner;
+        card.alive = true;
 
         /*Image backgroundCardImage = cardTemplate.GetComponent<Image>();
         backgroundCardImage.sprite = pic1;
@@ -54,7 +56,7 @@ public class Card : MonoBehaviour
         Image frontCardImage = imageObject.GetComponent<Image>();
         frontCardImage.sprite = pic2;*/
 
-        return card;
+        return card.gameObject;
     }
 
     /* Methods for changing the parameters of the card during the game */

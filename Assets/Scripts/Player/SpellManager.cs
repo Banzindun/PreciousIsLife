@@ -54,11 +54,13 @@ public class SpellManager {
     }
 
     public Spell getSpell(string name) {
+        if (AllSpells == null)
+            return null;
+
         for (int i = 0; i < AllSpells.Length; i++) {
             if (AllSpells[i].name.Equals(name))
             {
                 return AllSpells[i];
-
             }
         }
         

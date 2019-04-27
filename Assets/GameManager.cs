@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
 
     public int turnNumber;
 
+    public CardSpawner cardSpawner;
+
     // Use this for initialization
     void Start()
     {
@@ -33,13 +35,12 @@ public class GameManager : MonoBehaviour {
     private void SpawnEnemyMonsters(CardDefinition[] enemyCards)
     {
         // player.Cards = list of spawned cards
-        throw new NotImplementedException();
+        enemy.Cards = cardSpawner.SpawnEnemyCards(enemy, enemyCards);
     }
 
     private void SpawnPlayerMonsters(CardDefinition[] playerCards)
     {
-        // enemy.Cards = list of spawned cards
-        throw new NotImplementedException();
+        player.Cards = cardSpawner.SpawnPlayerCards(player, playerCards);
     }
 
     public void ShowPlayerSummonDialog() {
