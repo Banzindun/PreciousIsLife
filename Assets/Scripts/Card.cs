@@ -19,6 +19,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public int initiative;
     public bool alive;
     public bool gamerTeam;
+    public bool hasAction;
     public GameObject mainImageGO;
     public GameObject typeImageGO;
     public Sprite backgroundImage;
@@ -63,6 +64,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         card.setCardDefinition(cardDefinition);
         card.owner = owner;
         card.alive = true;
+        card.hasAction = true;
 
         Image backgroundCardImage = cardTemplate.GetComponent<Image>();
         backgroundCardImage.sprite = card.backgroundImage;

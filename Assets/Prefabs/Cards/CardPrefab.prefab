@@ -235,6 +235,7 @@ MonoBehaviour:
   initiative: 0
   alive: 0
   gamerTeam: 0
+  hasAction: 0
   mainImageGO: {fileID: 1825550309102680}
   typeImageGO: {fileID: 1929113806663590}
   backgroundImage: {fileID: 0}
@@ -253,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.46787477, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.15411857, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
