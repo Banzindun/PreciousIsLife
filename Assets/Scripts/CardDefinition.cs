@@ -17,4 +17,10 @@ public class CardDefinition : ScriptableObject
     public bool gamerTeam;
     public  Sprite pic1;
     public  Sprite pic2;
+
+
+    // Function called on each card after a new turn
+    public void OnNewTurn() {
+
+    }
 }

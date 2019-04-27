@@ -9,11 +9,9 @@ public class GameManager : MonoBehaviour {
 
     public PlayerController player;
 
+    public Enemy enemy;
+
     public int turnNumber;
-
-    List<Card> enemyCards;
-
-    List<Card> playerCards;
 
     // Use this for initialization
     void Start()
@@ -23,17 +21,25 @@ public class GameManager : MonoBehaviour {
 
         // Initialize the player
         player.SetState(GameSettings.PlayerState);
+        player.GameManager = this;
 
-        // Spawn all the monsters
-        SpawnMonsters(nextLevel.cardsToBeSpawned, player.MyCards);
+        SpawnPlayerMonsters(GameSettings.PlayerState.MyCards);
+        SpawnEnemyMonsters(nextLevel.cardsToBeSpawned);
 
         // Show summon dialog if possible
         ShowPlayerSummonDialog();
     }
 
+    private void SpawnEnemyMonsters(Card[] enemyCards)
+    {
+        // player.Cards = list of spawned cards
+        throw new NotImplementedException();
+    }
 
-    public void SpawnMonsters(Card[] enemyCards, Card[] myCards) {
-        // TODO
+    private void SpawnPlayerMonsters(Card[] enemyCards)
+    {
+        // enemy.Cards = list of spawned cards
+        throw new NotImplementedException();
     }
 
     public void ShowPlayerSummonDialog() {
@@ -71,7 +77,56 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartGame() {
-        turnNumber = 0;
+        turnNumber = 1;
+        NewTurn();
+        
+
+    }
+
+
+    public void DoAction(ActionType actionType, Card actorCard, Card targetCard) {
+        turnNumber++;
+        GameAction.makeAction(this, actionType, actorCard, targetCard);
+    }
+
+
+    public void ActionDone() {
+        // Check if any player won
+        if (enemy.Lost()) {
+            ShowPlayerResurrectDialog();
+            return;
+        }
+
+        // Check if player lost
+        if (player.Lost()) {
+            // End the game
+            ShowGameOverDialog();
+        }
+
+        NewTurn();
+    }
+
+   
+    private void ShowGameOverDialog()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void ShowPlayerResurrectDialog()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void NewTurn() {
+        player.NewTurn(turnNumber);
+        enemy.NewTurn(turnNumber);
+
+        // IF AI's turn, then make its turn.
+        if (turnNumber % 2 == 0)
+        {
+            // Should call ActionDone when finished
+            enemy.MakeAction(player);
+        }
     }
 
     // Update is called once per frame

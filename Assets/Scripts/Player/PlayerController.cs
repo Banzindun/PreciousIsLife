@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : BoardPlayer
+{
+    public GameManager GameManager;
 
     public PlayerState playerState;
 
@@ -12,11 +14,8 @@ public class PlayerController : MonoBehaviour {
 
     public int Health;
 
-    public int CurrentTurn = 0;
-
-    public Card[] MyCards;
-
-
+    public List<Card> RessurectableCards;
+    
     // Use this for initialization
     void Start () {
         SpellManager = new SpellManager(this);
@@ -30,16 +29,21 @@ public class PlayerController : MonoBehaviour {
 
     public void SetState(PlayerState playerState) {
         Health = playerState.Health;
-        MyCards = playerState.MyCards;
     }
 
     public bool canSummon() {
         Spell summonSpell = SpellManager.getSpell("Summon");
 
-        if (MyCards.Length < 3 && SpellManager.isAvailable(summonSpell)) {
+        if (Cards.Count < 3 && SpellManager.isAvailable(summonSpell)) {
             return true;
         }
 
         return false;
+    }
+
+    override public void RemoveCard(Card card)
+    {
+        base.RemoveCard(card);
+        RessurectableCards.Add(card);
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Card : MonoBehaviour
 {
     /* Card options */
-    //public CardDefinition definition;
+    public CardDefinition definition;
     public string name;
     public CardTypes.Type type;
     public int hP;
@@ -19,6 +19,9 @@ public class Card : MonoBehaviour
     public GameObject imageObject;
     public Sprite pic1;
     public Sprite pic2;
+
+    // Owner of the card
+    public BoardPlayer owner; 
 
     /* Set the starting parameters according to the card class definition */
     private void setCardDefinition(CardDefinition cardDefinition)
@@ -37,6 +40,8 @@ public class Card : MonoBehaviour
     /* Set the map parameters and place it on the stage */
     public void Summon(CardDefinition cardDefinition)
     {
+        definition = cardDefinition;
+
         Card cardTemplate = cardDefinition.template;
         Instantiate(cardTemplate, new Vector3(0, 0, 0), Quaternion.identity);
 
@@ -70,7 +75,11 @@ public class Card : MonoBehaviour
     public void Death()
     {
         alive = false;
+
+        owner.RemoveCard(this);
     }
+
+    
 
     // Update is called once per frame
     void Update ()
