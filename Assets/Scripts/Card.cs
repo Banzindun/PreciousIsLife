@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class Card : MonoBehaviour
+public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     /* Card options */
     public CardDefinition cardDefinition;
+    public Text n;
     public string name;
     public CardTypes.Type type;
     public int hP;
@@ -16,10 +18,11 @@ public class Card : MonoBehaviour
     public int initiative;
     public bool alive;
     public bool gamerTeam;
-    public static GameObject imageObject;
-    public static Sprite pic1;
-    public static Sprite pic2;
-
+    public static GameObject mainImageGO;
+    public static GameObject typeImageGO;
+    public static Sprite backgroundImage;
+    public static Sprite mainImage;
+    public static Sprite typeImage;
     public BoardPlayer owner;
 
     /* Set the starting parameters according to the card class definition */
@@ -34,9 +37,11 @@ public class Card : MonoBehaviour
         attackValue = cardDefinition.attackValue;
         initiative = cardDefinition.initiative;
         gamerTeam = cardDefinition.gamerTeam;
-        imageObject = cardDefinition.imageObject;
-        pic1 = cardDefinition.pic1;
-        pic2 = cardDefinition.pic2;
+        mainImageGO = cardDefinition.mainImageGO;
+        typeImageGO = cardDefinition.typeImageGO;
+        backgroundImage = cardDefinition.backgroundImage;
+        mainImage = cardDefinition.mainImage;
+        typeImage = cardDefinition.typeImage;
     }
 
     /* Set the map parameters and place it on the stage */
@@ -52,10 +57,13 @@ public class Card : MonoBehaviour
         card.alive = true;
 
         Image backgroundCardImage = cardTemplate.GetComponent<Image>();
-        backgroundCardImage.sprite = pic1;
+        backgroundCardImage.sprite = backgroundImage;
 
-        Image frontCardImage = imageObject.GetComponent<Image>();
-        frontCardImage.sprite = pic2;
+        Image frontCardImage = mainImageGO.GetComponent<Image>();
+        frontCardImage.sprite = mainImage;
+
+        Image typeCardImage = typeImageGO.GetComponent<Image>();
+        typeCardImage.sprite = typeImage;
 
         return card.gameObject;
     }
@@ -88,6 +96,18 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+   
+    }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        n.gameObject.SetActive(true);
+        Debug.Log("enter");
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        n.gameObject.SetActive(false);
+        Debug.Log("exit");
     }
 }
