@@ -11,3 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ca24ecec165ba4d87830ac1d7f2219, type: 3}
   m_Name: PlayerState
   m_EditorClassIdentifier: 
+  myCards: []

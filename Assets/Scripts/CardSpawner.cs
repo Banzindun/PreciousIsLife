@@ -11,13 +11,16 @@ public class CardSpawner : MonoBehaviour
     public GameObject[] playerSpawnPoints;
 
     // Use this for initialization
-    public List<Card> SpawnEnemyCards(BoardPlayer enemy, CardDefinition[] cardsToSpawn) {
+    public List<Card> SpawnEnemyCards(BoardPlayer enemy, CardDefinition[] cardsToSpawn)
+    {
         List<Card> cards = new List<Card>();
 
-        for (int i = 0; i < cardsToSpawn.Length; i++) {
+        for (int i = 0; i < cardsToSpawn.Length; i++)
+        {
             CardDefinition cd = cardsToSpawn[i];
 
             GameObject cardGO = Card.Summon(enemy, cd);
+
             cardGO.transform.SetParent(enemySpawnPoints[i].transform, false);
 
             cards.Add(cardGO.GetComponent<Card>());

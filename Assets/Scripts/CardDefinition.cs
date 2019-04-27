@@ -16,12 +16,16 @@ public class CardDefinition : ScriptableObject
     public int initiative;
     public Card template;
     public bool gamerTeam;
-    public  Sprite pic1;
-    public  Sprite pic2;
+    public GameObject mainImageGO;
+    public GameObject typeImageGO;
+    public Sprite backgroundImage;
+    public Sprite mainImage;
+    public Sprite typeImage;
 
 
     // Function called on each card after a new turn
-    public void OnNewTurn() {
+    public void OnNewTurn()
+    {
 
     }
 
