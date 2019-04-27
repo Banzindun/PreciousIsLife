@@ -21,6 +21,7 @@ public class PlayerState : ScriptableObject {
     }
 
 
+    [SerializeField]
     private int health;
 
     public int Health {

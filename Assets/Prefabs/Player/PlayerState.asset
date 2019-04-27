@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: PlayerState
   m_EditorClassIdentifier: 
   myCards: []
+  health: 100

@@ -11,5 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42bb08865b8b074ca2b8748c31f3e91, type: 3}
   m_Name: Summon
   m_EditorClassIdentifier: 
-  targetType: 0
+  Name: Summon
+  TargetType: 0
+  TargetTeam: 0
   HealthCost: 0

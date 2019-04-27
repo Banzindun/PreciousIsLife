@@ -11,5 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ea14a08402e6b47a4ea21396f5c96a, type: 3}
   m_Name: MultipleDamage
   m_EditorClassIdentifier: 
-  targetType: 0
+  Name: MultipleDamage
+  TargetType: 0
+  TargetTeam: 0
   HealthCost: 0

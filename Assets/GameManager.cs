@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
     public CardSpawner cardSpawner;
 
     // Dialog for summoning and upgrades
-    GameObject exorcismDialog;
+    public GameObject exorcismDialog;
 
     // Use this for initialization
     void Start()
@@ -46,18 +46,15 @@ public class GameManager : MonoBehaviour {
     }
 
     public void ShowPlayerSummonDialog() {
+        Debug.Log("Trying to show the player's summon dialog.");
         
-        if (!player.canSummon())
-        {
-            OnPlayerSummonDialogClosed();
-            return;
-        }
-
         exorcismDialog.SetActive(true);
         // TODO disable player
     }
 
     public void OnPlayerSummonDialogClosed() {
+        Debug.Log("Summoning over.");
+        
         // Summoning over
 
         // ...
@@ -71,30 +68,34 @@ public class GameManager : MonoBehaviour {
     {
         // TODO Enable all the monsters
 
-
+        OnMonstersEnabled();
     }
 
     public void OnMonstersEnabled()
     {
         // TODO Start the game
-        StartGame();
+        StartBattle();
     }
 
-    public void StartGame() {
+    public void StartBattle() {
+        Debug.Log("Started new battle.");
         turnNumber = 1;
         NewTurn();
-        
 
     }
 
 
     public void DoAction(ActionType actionType, Card actorCard, Card targetCard) {
+        Debug.Log("Performing action: " + actionType.ToString());
+
         turnNumber++;
         GameAction.makeAction(this, actionType, actorCard, targetCard);
     }
 
 
     public void ActionDone() {
+        Debug.Log("Action done.");
+
         // Check if any player won
         if (enemy.Lost()) {
             ShowPlayerResurrectDialog();
@@ -113,15 +114,17 @@ public class GameManager : MonoBehaviour {
    
     private void ShowGameOverDialog()
     {
-        throw new NotImplementedException();
+        Debug.Log("Gameover. Showing gameover screen.");
     }
 
     private void ShowPlayerResurrectDialog()
     {
-        throw new NotImplementedException();
+        Debug.Log("Player won, trying to show ressuret diaog.");
     }
 
     public void NewTurn() {
+        Debug.Log("Starting new round.");
+
         player.NewTurn(turnNumber);
         enemy.NewTurn(turnNumber);
 
@@ -129,10 +132,10 @@ public class GameManager : MonoBehaviour {
         if (turnNumber % 2 == 0)
         {
             // Should call ActionDone when finished
+            Debug.Log("Waiting for enemy to perform an action.");
             enemy.MakeAction(player);
         }
     }
-
 
     public void BattleFinished() {
 

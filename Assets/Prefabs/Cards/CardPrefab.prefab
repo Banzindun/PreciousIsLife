@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114204477174253148}
   - component: {fileID: 114634274234859420}
   m_Layer: 0
-  m_Name: CardPrefab
+  m_Name: Ranger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

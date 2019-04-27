@@ -11,5 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9996de297aa744f42830bb50c7cbbf70, type: 3}
   m_Name: Resurrect
   m_EditorClassIdentifier: 
-  targetType: 0
+  Name: Ressurect
+  TargetType: 0
+  TargetTeam: 0
   HealthCost: 0
