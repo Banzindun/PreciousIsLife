@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
+    /* Card options */
     //public CardDefinition definition;
-
     public string name;
     public CardTypes.Type type;
     public int hP;
@@ -20,6 +20,7 @@ public class Card : MonoBehaviour
     public Sprite pic1;
     public Sprite pic2;
 
+    /* Set the starting parameters according to the card class definition */
     private void setCardDefinition(CardDefinition cardDefinition)
     {
         name = cardDefinition.name;
@@ -33,8 +34,7 @@ public class Card : MonoBehaviour
         pic2 = cardDefinition.pic2;
     }
 
-
-    // Action methods
+    /* Set the map parameters and place it on the stage */
     public void Summon(CardDefinition cardDefinition)
     {
         Card cardTemplate = cardDefinition.template;
@@ -50,6 +50,7 @@ public class Card : MonoBehaviour
         frontCardImage.sprite = pic2;
     }
 
+    /* Methods for changing the parameters of the card during the game */
     public void Heal (int value)
     {
         hP = hP + value;
@@ -69,12 +70,6 @@ public class Card : MonoBehaviour
     public void Death()
     {
         alive = false;
-    }
-
-    // Use this for initialization
-    void Start ()
-    {
-        
     }
 
     // Update is called once per frame
