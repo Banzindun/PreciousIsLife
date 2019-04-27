@@ -6,102 +6,75 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
-
-    public CardDefinition definition;
-
+    /* Card options */
+    //public CardDefinition definition;
     public string name;
     public CardTypes.Type type;
     public int hP;
     public int level;
     public int attackValue;
     public int initiative;
-
     public bool alive;
-    
+    public bool gamerTeam;
+    public GameObject imageObject;
+    public Sprite pic1;
+    public Sprite pic2;
 
-
-    public void SetType (CardTypes.Type newType)
+    /* Set the starting parameters according to the card class definition */
+    private void setCardDefinition(CardDefinition cardDefinition)
     {
-        type = newType;
-    }
-    public void SetHP (int value)
-    {
-        hP = value;
-    }
-    public void SetLevel (int value)
-    {
-        level = value;
-    }
-    public void SetAttackValue (int value)
-    {
-        attackValue = value;
-    }
-    public void SetInitiative (int value)
-    {
-        initiative = value;
-    }
-    public void SetAliveStatus(bool newStatus)
-    {
-        alive = newStatus;
-    }
-    public void SetImage(Text imageName)
-    {
-
+        name = cardDefinition.name;
+        type = cardDefinition.type;
+        hP = cardDefinition.hP;
+        level = cardDefinition.level;
+        attackValue = cardDefinition.attackValue;
+        initiative = cardDefinition.initiative;
+        gamerTeam = cardDefinition.gamerTeam;
+        pic1 = cardDefinition.pic1;
+        pic2 = cardDefinition.pic2;
     }
 
-    // Action methods
-    public static void Summon(CardDefinition def)
+    /* Set the map parameters and place it on the stage */
+    public void Summon(CardDefinition cardDefinition)
     {
-        Card cardTemplate = def.template;
+        Card cardTemplate = cardDefinition.template;
         Instantiate(cardTemplate, new Vector3(0, 0, 0), Quaternion.identity);
 
-        cardTemplate.setCardDefinition(def);
-        cardTemplate.SetAliveStatus(true);
+        cardTemplate.setCardDefinition(cardDefinition);
+        cardTemplate.alive = true;
+
+        Image backgroundCardImage = cardTemplate.GetComponent<Image>();
+        backgroundCardImage.sprite = pic1;
+
+        Image frontCardImage = imageObject.GetComponent<Image>();
+        frontCardImage.sprite = pic2;
     }
 
-    private void setCardDefinition(CardDefinition def)
-    {
-        name = def.name;
-        type = def.type;
-        hP = def.hP;
-        level = def.level;
-        attackValue = def.attackValue;
-        initiative = def.initiative;
-    }
-
+    /* Methods for changing the parameters of the card during the game */
     public void Heal (int value)
     {
-
+        hP = hP + value;
     }
     public void Damage (int value)
     {
-
+        hP = hP - value;
     }
     public void LevelUp()
     {
-
+        level++;
     }
     public void Revival()
     {
-
+        alive = true;
     }
     public void Death()
     {
-
-    }
-
-
-    // Use this for initialization
-    void Start ()
-    {
-        
+        alive = false;
     }
 
     // Update is called once per frame
     void Update ()
     {
 
-       
-
-}
+    }
 }
