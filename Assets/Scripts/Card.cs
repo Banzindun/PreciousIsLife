@@ -9,7 +9,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     /* Card options */
     public CardDefinition cardDefinition;
-    public Text n;
+    public Text nameLabel;
     public string name;
     public CardTypes.Type type;
     public int hP;
@@ -25,6 +25,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Sprite typeImage;
     public BoardPlayer owner;
 
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
     /* Set the starting parameters according to the card class definition */
     private void setCardDefinition(CardDefinition cardDefinition)
     {
@@ -37,15 +43,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         attackValue = cardDefinition.attackValue;
         initiative = cardDefinition.initiative;
         gamerTeam = cardDefinition.gamerTeam;
-        mainImageGO = cardDefinition.mainImageGO;
-        typeImageGO = cardDefinition.typeImageGO;
         backgroundImage = cardDefinition.backgroundImage;
         mainImage = cardDefinition.mainImage;
         typeImage = cardDefinition.typeImage;
+
+        nameLabel.text = name;
     }
 
     /* Set the map parameters and place it on the stage */
-    public static GameObject Summon(BoardPlayer owner, CardDefinition cardDefinition)
+    public static GameObject Summon (BoardPlayer owner, CardDefinition cardDefinition)
     {
         Card cardTemplate = cardDefinition.template;
         cardTemplate.gameObject.name = cardDefinition.name;
@@ -55,8 +61,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         card.setCardDefinition(cardDefinition);
         card.owner = owner;
         card.alive = true;
-
-    
 
         Image backgroundCardImage = cardTemplate.GetComponent<Image>();
         backgroundCardImage.sprite = card.backgroundImage;
@@ -95,25 +99,18 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         owner.RemoveCard(this);
     }
 
-    public CardDefinition GetCardDefinitionSignature() {
-        return CardDefinition.Create(this);
-    }
-
-    // Update is called once per frame
-    void Update ()
+    public CardDefinition GetCardDefinitionSignature()
     {
-   
+        return CardDefinition.Create(this);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        n.gameObject.SetActive(true);
-        Debug.Log("enter");
+        nameLabel.gameObject.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        n.gameObject.SetActive(false);
-        Debug.Log("exit");
+        nameLabel.gameObject.SetActive(false);
     }
 }

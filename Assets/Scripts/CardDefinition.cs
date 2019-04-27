@@ -16,8 +16,6 @@ public class CardDefinition : ScriptableObject
     public int initiative;
     public Card template;
     public bool gamerTeam;
-    public GameObject mainImageGO;
-    public GameObject typeImageGO;
     public Sprite backgroundImage;
     public Sprite mainImage;
     public Sprite typeImage;
