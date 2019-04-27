@@ -11,8 +11,15 @@ public class CameraConfigurator : MonoBehaviour {
     public Camera CameraReference;
 
 	// Use this for initialization
-	void Start () {
-        CameraReference.orthographicSize = Screen.height / 2f;
-	}
+	void Update () {
+
+        int cameraHeight = Screen.height;
+        float desiredAspect = 16f / 9f;
+        float aspect = Camera.main.aspect;
+        float ratio = desiredAspect / aspect;
+        Camera.main.orthographicSize = cameraHeight * ratio;
+
+        //CameraReference.orthographicSize = Screen.height / 2f;
+    }
 	
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -18,9 +19,17 @@ public class GameManager : MonoBehaviour {
     // Dialog for summoning and upgrades
     public GameObject exorcismDialog;
 
+    public GameEvent DisablePlayerInteractionEvent;
+
+    public GameEvent EnablePlayerInteractionEvent;
+
+
     // Use this for initialization
     void Start()
     {
+        // Start with the player disabled
+        DisablePlayerInteractions();
+
         // Get next level
         Level nextLevel = GameSettings.AllLevels[GameSettings.CurrentLevelIndex];
 
@@ -73,8 +82,11 @@ public class GameManager : MonoBehaviour {
 
     public void OnMonstersEnabled()
     {
+        EnablePlayerInteractions();
+
         // TODO Start the game
         StartBattle();
+        
     }
 
     public void StartBattle() {
@@ -94,11 +106,14 @@ public class GameManager : MonoBehaviour {
 
 
     public void ActionDone() {
+        DisablePlayerInteractions();
+
         Debug.Log("Action done.");
 
         // Check if any player won
         if (enemy.Lost()) {
             ShowPlayerResurrectDialog();
+            BattleFinished();
             return;
         }
 
@@ -131,9 +146,15 @@ public class GameManager : MonoBehaviour {
         // IF AI's turn, then make its turn.
         if (turnNumber % 2 == 0)
         {
+            
             // Should call ActionDone when finished
             Debug.Log("Waiting for enemy to perform an action.");
             enemy.MakeAction(player);
+        }
+        else {
+            EnablePlayerInteractions();
+            Debug.Log("Waiting for player to perform an action.");
+            player.MakeAction(enemy);
         }
     }
 
@@ -145,4 +166,14 @@ public class GameManager : MonoBehaviour {
     void Update () {
 		
 	}
+
+    public void EnablePlayerInteractions()
+    {
+        EnablePlayerInteractionEvent.Raise();
+    }
+
+    public void DisablePlayerInteractions()
+    {
+        DisablePlayerInteractionEvent.Raise();
+    }
 }

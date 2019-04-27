@@ -58,4 +58,11 @@ public class PlayerController : BoardPlayer
         playerState.MyCards = cardDefs.ToArray();
         playerState.Health = Health;
     }
+
+    public void MakeAction(BoardPlayer enemy) {
+        // I should just wait for the player to choose something to do.
+        
+
+        // Then I will call ActionDone() on the GameManager
+    }
 }
