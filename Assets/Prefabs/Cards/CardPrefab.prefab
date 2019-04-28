@@ -225,10 +225,9 @@ MonoBehaviour:
   attackEffect: {fileID: 0}
   blockEffect: {fileID: 0}
   waitEffect: {fileID: 0}
-  activeCardEffect: {fileID: 1982853167082070, guid: 6bcd48b9ac91df045a5d72310d4fdbc4,
-    type: 2}
+  activeCardEffect: {fileID: 0}
   deathEffect: {fileID: 0}
-  healEffect: {fileID: 0}
+  healEffect: {fileID: 1203417161607110, guid: b1efc15819998404096d73574de9d5cd, type: 2}
   damageEffect: {fileID: 0}
 --- !u!114 &114646027508301442
 MonoBehaviour:

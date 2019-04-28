@@ -9,18 +9,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31a662c2873e91a4489d988e1f7c23de, type: 3}
-  m_Name: Wyvern
+  m_Name: Dinozaur
   m_EditorClassIdentifier: 
-  type: 2
-  Name: Wyvern
-  maxHealth: 100
+  type: 0
+  Name: Dinozaur
+  maxHealth: 50
   level: 1
-  initiative: 5
-  shieldReduction: 0.3199999928474426
-  meleeAttackDamage: 10
-  archerAttackDamage: 10
-  flyingAttackDamage: 10
+  initiative: 3
+  shieldReduction: 0.20000000298023224
+  meleeAttackDamage: 5
+  archerAttackDamage: 2
+  flyingAttackDamage: 2
   nextLevel: {fileID: 0}
-  image: {fileID: 21300000, guid: fe5171801640e1444aa6b39eb2bc8d7d, type: 3}
-  cardCost: 10
+  image: {fileID: 21300000, guid: 2cb2383e1f6deb645bb859b632172ba4, type: 3}
+  cardCost: 5
   upgradeCost: 0

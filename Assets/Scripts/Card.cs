@@ -62,10 +62,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         health += healAmount;
 
+        UpdateHealthBar();
+
         if (health > 100)
             health = 100;
 
-        UpdateHealthBar();
+        //Instantiate(healEffect, transform.position, Quaternion.identity);
     }
 
     /* Set the starting parameters according to the card class definition */
@@ -332,7 +334,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void HighlightActiveCard()
     {
         effectLabel.text = "ActiveCard";
-        //Instantiate(brickParticle, transform.position, Quaternion.identity);
+        //Instantiate(activeCardEffect, transform.position, Quaternion.identity);
     }
 
 
