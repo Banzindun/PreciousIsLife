@@ -48,4 +48,12 @@ At the end of the round you can resurrect fallen friends (with all the upgrades)
 
 At the start of the round you can summon new one.
 
+POLISHING: 
+
  [] Polish edges of the "Actions menu", I cannot put the cards there properly without the background beeing visible.
+
+ [] Disable card markings on the board
+
+ [] TODO: Initiation
+
+ Lens flare from: https://opengameart.org/node/8255
