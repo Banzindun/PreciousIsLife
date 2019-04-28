@@ -6,9 +6,8 @@ public class CardTypes : MonoBehaviour
 {
     public enum Type   // List of unit types
     {
-        None,
         Melee,
-        Distant,
+        Archer,
         Flying
     }
 }

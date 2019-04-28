@@ -1,19 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-[System.Serializable]
-public class SpellManager {
-
-    [SerializeField]
+public class SpellManager : MonoBehaviour{
+    
     public Spell[] AllSpells;
 
     public PlayerController player;
 
-
+    public SpellActivator[] spellActivators;
 
     public SpellManager(PlayerController pc) {
         player = pc;
+    }
+
+    internal void ActivateSpell(SpellActivator spellActivator, Spell spell)
+    {
+        player.OnSpellTrigger(spell);
     }
 
     public bool isAvailable(Spell spell)
@@ -51,7 +56,6 @@ public class SpellManager {
         // Cast the spell and disable it for the rest of the turn
         spell.Cast(player, target);
         spell.DisableTurn = player.CurrentTurn;
-
     }
 
     public Spell getSpell(string name) {
@@ -66,5 +70,31 @@ public class SpellManager {
         }
         
         return null;
+    }
+
+    internal void ActionTriggered()
+    {
+        DisableSpells();
+    }
+
+    private void DisableSpells() {
+        foreach (SpellActivator sa in spellActivators) {
+            sa.Deactivate();
+        }
+    }
+
+    private void EnableSpells()
+    {
+        foreach (SpellActivator sa in spellActivators)
+        {
+            if (isAvailable(sa.Spell)) {
+                sa.Activate();
+            }            
+        }
+    }
+
+    internal void FinishedTurn()
+    {
+        EnableSpells();
     }
 }

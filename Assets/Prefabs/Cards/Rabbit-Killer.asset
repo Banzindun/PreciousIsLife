@@ -11,14 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a662c2873e91a4489d988e1f7c23de, type: 3}
   m_Name: Rabbit-Killer
   m_EditorClassIdentifier: 
-  type: 1
-  name: Rabbit-KIller
-  hP: 100
+  type: 0
+  Name: RabbitKiller
+  maxHealth: 100
   level: 1
-  attackValue: 10
   initiative: 10
-  template: {fileID: 114634274234859420, guid: 4bbe4768107a7b34e8da027dd4d46064, type: 2}
-  gamerTeam: 0
-  backgroundImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  mainImage: {fileID: 21300000, guid: 60bf5fc1b21dd5049b628b8c6c2da226, type: 3}
-  typeImage: {fileID: 21300000, guid: d5e849b3b6b433c4c876ba348d982f93, type: 3}
+  shieldReduction: 0.25
+  meleeAttackDamage: 10
+  archerAttackDamage: 10
+  flyingAttackDamage: 10
+  image: {fileID: 21300000, guid: 60bf5fc1b21dd5049b628b8c6c2da226, type: 3}

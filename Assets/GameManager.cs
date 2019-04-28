@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class GameManager : MonoBehaviour {
 
@@ -23,10 +24,24 @@ public class GameManager : MonoBehaviour {
 
     public GameEvent EnablePlayerInteractionEvent;
 
+    // List of all the cards
+    private List<Card> allCards;
+
+    // List of cards by their initiation, 
+    // if something dies it should be removed from here
+    private List<Card> initiationList;
+
+    private List<Card> nextInitiationListQueue;
+
+    private Card activeCard;
 
     // Use this for initialization
     void Start()
     {
+        initiationList = new List<Card>();
+        nextInitiationListQueue = new List<Card>();
+        allCards = new List<Card>();
+
         // Start with the player disabled
         DisablePlayerInteractions();
 
@@ -35,6 +50,11 @@ public class GameManager : MonoBehaviour {
 
         // Initialize the player
         player.SetState(GameSettings.PlayerState);
+        player.Enemy = enemy;
+        enemy.Enemy = player;
+        
+        // Create the list of all cards
+        allCards = new List<Card>();
 
         SpawnPlayerMonsters(GameSettings.PlayerState.MyCards);
         SpawnEnemyMonsters(nextLevel.cardsToBeSpawned);
@@ -46,19 +66,19 @@ public class GameManager : MonoBehaviour {
     private void SpawnEnemyMonsters(CardDefinition[] enemyCards)
     {
         // player.Cards = list of spawned cards
-        enemy.Cards = cardSpawner.SpawnEnemyCards(enemy, enemyCards);
+        enemy.Cards = cardSpawner.SpawnEnemyCards(enemy, player, enemyCards);
+        allCards.AddRange(enemy.Cards);
     }
 
     private void SpawnPlayerMonsters(CardDefinition[] playerCards)
     {
-        player.Cards = cardSpawner.SpawnPlayerCards(player, playerCards);
+        player.Cards = cardSpawner.SpawnPlayerCards(player, enemy, playerCards);
+        allCards.AddRange(player.Cards);
     }
 
     public void ShowPlayerSummonDialog() {
         Debug.Log("Trying to show the player's summon dialog.");
-        
         exorcismDialog.SetActive(true);
-        // TODO disable player
     }
 
     public void OnPlayerSummonDialogClosed() {
@@ -68,7 +88,7 @@ public class GameManager : MonoBehaviour {
 
         // ...
 
-        // Enable all the monsters and start the game
+        // Enable all the monsters and start of the game
         EnableAllTheMonsters();
     }
 
@@ -91,21 +111,19 @@ public class GameManager : MonoBehaviour {
 
     public void StartBattle() {
         Debug.Log("Started new battle.");
-        turnNumber = 1;
+        turnNumber = 0;
         NewTurn();
-
     }
 
 
-    public void DoAction(ActionType actionType, Card actorCard, Card targetCard) {
-        Debug.Log("Performing action: " + actionType.ToString());
+    public void OnActionDone() {
 
-        turnNumber++;
-        GameAction.makeAction(this, actionType, actorCard, targetCard);
-    }
+        if (activeCard != null)
+        {
+            activeCard.isActiveCard = false;
+            activeCard.DisableHighlight();
+        }
 
-
-    public void ActionDone() {
         DisablePlayerInteractions();
 
         Debug.Log("Action done.");
@@ -138,34 +156,79 @@ public class GameManager : MonoBehaviour {
     }
 
     public void NewTurn() {
-        Debug.Log("Starting new round.");
-
+        turnNumber++;
+        Debug.Log("Starting new turn:" + turnNumber);
+        
         player.NewTurn(turnNumber);
         enemy.NewTurn(turnNumber);
 
-        // IF AI's turn, then make its turn.
-        if (turnNumber % 2 == 0)
-        {
-            
-            // Should call ActionDone when finished
-            Debug.Log("Waiting for enemy to perform an action.");
-            enemy.MakeAction(player);
+        if (initiationList.Count == 0) {
+            NextRound();
         }
-        else {
+
+        Debug.Log("Initiation order: " + InitiationListToString());
+
+
+        activeCard = initiationList[0];
+        activeCard.isActiveCard = true;
+        initiationList.Remove(activeCard);
+        activeCard.HighlightActiveCard();
+
+        Debug.Log("Active card: " + activeCard.definition.Name);
+
+        BoardPlayer activePlayer = activeCard.owner;
+
+        if (activePlayer == player) {
             EnablePlayerInteractions();
-            Debug.Log("Waiting for player to perform an action.");
-            player.MakeAction(enemy);
         }
+
+        activePlayer.Play(activeCard);
+
+        // TODO: Highlight the active card
+
+        Debug.Log("Player on turn: " + activePlayer.name);
+    }
+
+    private void NextRound()
+    {
+        InitializeInitiationList();
+
+        if (turnNumber != 1)
+        {
+            foreach (Card c in allCards){
+                c.NewRound();
+            }
+
+        }
+    }
+
+    private string InitiationListToString()
+    {
+        string inList = "";
+        foreach (Card c in initiationList){
+            inList += c.definition.Name + " ";
+        }
+
+        return inList;
+    }
+
+    private void InitializeInitiationList()
+    {
+        // Sort cards by initiation
+        List<Card> sortedCards = allCards.OrderBy(card => card.definition.initiative).ToList();
+
+        // Add them to the list with queue beeing first
+        initiationList = new List<Card>();
+        initiationList.AddRange(nextInitiationListQueue);
+        initiationList.AddRange(sortedCards);
+
+        // Empty the queue
+        nextInitiationListQueue = new List<Card>();
     }
 
     public void BattleFinished() {
 
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 
     public void EnablePlayerInteractions()
     {
@@ -175,5 +238,20 @@ public class GameManager : MonoBehaviour {
     public void DisablePlayerInteractions()
     {
         DisablePlayerInteractionEvent.Raise();
+    }
+
+    public void AddCard(Card card) {
+        allCards.Add(card);
+    }
+
+    public void RemoveCard(Card card) {
+        allCards.Remove(card);
+        initiationList.Remove(card);
+        nextInitiationListQueue.Remove(card);
+    }
+
+    public void AddCardToInitiationQueue(Card card)
+    {
+        nextInitiationListQueue.Add(card);
     }
 }

@@ -5,86 +5,102 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    /* Card options */
-    public CardDefinition cardDefinition;
-    public Text nameLabel;
-    public Text hPLabel;
-    public string name;
-    public CardTypes.Type type;
-    public int hP;
-    public int level;
-    public int attackValue;
-    public int initiative;
+    // Definition of the card
+    public CardDefinition definition;
+
+    public int health; // TODO init the health
+
+    public int level; // TODO init the level
+
     public bool alive;
-    public bool gamerTeam;
-    public GameObject mainImageGO;
-    public GameObject typeImageGO;
-    public Sprite backgroundImage;
-    public Sprite mainImage;
-    public Sprite typeImage;
+
+    public bool hasShield = false;
+
+    public bool isActiveCard;
+
     public BoardPlayer owner;
 
-    // Update is called once per frame
-    void Update()
-    {
+    public BoardPlayer enemy;
 
+    public GameManager gameManager;
+
+    public Text effectLabel;
+
+    public Image mainImage;
+
+    public Image typeImage;
+
+    public GameObject shieldGO;
+
+    public Text hPLabel;
+
+    private void Start()
+    {
+        UpdateHealthBar();
     }
 
     /* Set the starting parameters according to the card class definition */
-    private void setCardDefinition(CardDefinition cardDefinition)
+    public void SetCardDefinition(CardDefinition cardDefinition)
     {
-        this.cardDefinition = cardDefinition;
-        
-        name = cardDefinition.name;
-        type = cardDefinition.type;
-        hP = cardDefinition.hP;
-        level = cardDefinition.level;
-        attackValue = cardDefinition.attackValue;
-        initiative = cardDefinition.initiative;
-        gamerTeam = cardDefinition.gamerTeam;
-        backgroundImage = cardDefinition.backgroundImage;
-        mainImage = cardDefinition.mainImage;
-        typeImage = cardDefinition.typeImage;
+        this.definition = cardDefinition;
 
-        nameLabel.text = name;
-        hPLabel.text = hP.ToString();
+
+        health = definition.maxHealth;
+        level = definition.level; // TODO init the level
     }
 
-    /* Set the map parameters and place it on the stage */
-    public static GameObject Summon (BoardPlayer owner, CardDefinition cardDefinition)
+    public void ReceiveDamage(Card otherCard)
     {
-        Card cardTemplate = cardDefinition.template;
-        cardTemplate.gameObject.name = cardDefinition.name;
+        Debug.Log("Receiving damage.");
 
-        Card card = Instantiate(cardTemplate);
-        
-        card.setCardDefinition(cardDefinition);
-        card.owner = owner;
-        card.alive = true;
+        CardDefinition otherDef = otherCard.definition;
 
-        Image backgroundCardImage = cardTemplate.GetComponent<Image>();
-        backgroundCardImage.sprite = card.backgroundImage;
+        // He is attacking me, I receive damage given his type
+        // If I have shield, I block something
+        double damageReceived = 0;
+        switch (definition.type) {
+            case CardTypes.Type.Archer:
+                damageReceived = otherDef.archerAttackDamage;
+                break;
+            case CardTypes.Type.Flying:
+                damageReceived = otherDef.flyingAttackDamage;
+                break;
+            case CardTypes.Type.Melee:
+                damageReceived = otherDef.meleeAttackDamage;
+                break;
+            default:
+                break;
+        }
 
-        Image frontCardImage = card.mainImageGO.GetComponent<Image>();
-        frontCardImage.sprite = card.mainImage;
+        if (hasShield)
+        {
+            damageReceived *= definition.shieldReduction;
+            DisableShield();
+        }
 
-        Image typeCardImage = card.typeImageGO.GetComponent<Image>();
-        typeCardImage.sprite = card.typeImage;
+        Debug.Log("Receiving " + damageReceived + "damage");
 
-        return card.gameObject;
+        RemoveHealth((int) damageReceived);
     }
 
-    /* Methods for changing the parameters of the card during the game */
-    public void Heal (int value)
+    private void RemoveHealth(int damageReceived)
     {
-        hP = hP + value;
+        health -= damageReceived;
+
+        UpdateHealthBar();
+
+        if (health <= 0) {
+            Death();
+        }
     }
-    public void Damage (int value)
-    {
-        hP = hP - value;
+
+    private void UpdateHealthBar() {
+        hPLabel.text = health + "";
     }
+
+
     public void LevelUp()
     {
         level++;
@@ -97,8 +113,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         alive = false;
 
-        // Tell the owner to remove the card
+        // Tell the owner  and gameManager that the card was destroyed
         owner.RemoveCard(this);
+        gameManager.RemoveCard(this);
+
+        // TODO: Death effect/animation
     }
 
     public CardDefinition GetCardDefinitionSignature()
@@ -108,11 +127,84 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        nameLabel.gameObject.SetActive(true);
+        Debug.Log("OnPointerEnter");
+        ActivateHighlight();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        nameLabel.gameObject.SetActive(false);
+        Debug.Log("OnPointerExit");
+        DisableHighlight();
+    }
+
+
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Debug.Log("Player clicked on card: " + definition.Name);
+
+            enemy.OnCardSelected(this);
+            owner.OnCardSelected(this);
+        }
+    }
+
+    public void ActivateHighlight() {
+        if (hasShield) {
+            HighlightShield();
+        }
+
+        if (isActiveCard) {
+            // Set the highlight for the active card
+            HighlightActiveCard();
+        }
+
+        if (gameManager.player.IsInteracting())
+        {
+            if (gameManager.player.AmITarget(this)) {
+                effectLabel.text = "Interactable";
+                return;
+            }
+
+            // TODO set the highlight
+            effectLabel.text = "NonInteractable";
+
+            if (isActiveCard)
+                return;
+        } else {
+            effectLabel.text = "HP Displayed";
+        }
+    }
+
+    public void DisableHighlight()
+    {
+        effectLabel.text = "";
+
+        if (isActiveCard) {
+            HighlightActiveCard();
+        }        
+    }
+
+    public void HighlightActiveCard() {
+        effectLabel.text = "ActiveCard";
+    }
+
+
+
+    public void NewRound()
+    {
+        // Reset the shield
+        DisableShield();
+    }
+
+    internal void HighlightShield()
+    {
+        shieldGO.SetActive(true);
+    }
+
+    internal void DisableShield() {
+        hasShield = false;
+        shieldGO.SetActive(false);
     }
 }

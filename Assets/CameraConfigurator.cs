@@ -10,7 +10,7 @@ public class CameraConfigurator : MonoBehaviour {
     [Tooltip("Reference to the camera.")]
     public Camera CameraReference;
 
-	// Use this for initialization
+	// Use this for the initialization
 	void Update () {
 
         int cameraHeight = Screen.height;

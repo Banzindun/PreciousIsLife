@@ -12,17 +12,12 @@ MonoBehaviour:
   m_Name: Ranger
   m_EditorClassIdentifier: 
   type: 2
-  name: Ranger
-  hP: 100
+  Name: Ranger
+  maxHealth: 100
   level: 1
-  attackValue: 10
-  initiative: 5
-  template: {fileID: 114634274234859420, guid: 4bbe4768107a7b34e8da027dd4d46064, type: 2}
-  gamerTeam: 1
-  mainImageGO: {fileID: 1825550309102680, guid: 4bbe4768107a7b34e8da027dd4d46064,
-    type: 2}
-  typeImageGO: {fileID: 1929113806663590, guid: 4bbe4768107a7b34e8da027dd4d46064,
-    type: 2}
-  backgroundImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  mainImage: {fileID: 21300000, guid: b1712f7247af40840b98b63696d7ad71, type: 3}
-  typeImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  initiative: 7
+  shieldReduction: 0.2630000114440918
+  meleeAttackDamage: 10
+  archerAttackDamage: 10
+  flyingAttackDamage: 10
+  image: {fileID: 21300000, guid: 60bf5fc1b21dd5049b628b8c6c2da226, type: 3}

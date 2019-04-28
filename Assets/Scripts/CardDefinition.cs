@@ -7,19 +7,42 @@ using UnityEngine.UI;
 [CreateAssetMenu]
 public class CardDefinition : ScriptableObject
 {
-    // Start parameters
+    // Constants:
     public CardTypes.Type type;
-    public string name;
-    public int hP;
+    public string Name;
+    public int maxHealth;
     public int level;
-    public int attackValue;
     public int initiative;
-    public Card template;
-    public bool gamerTeam;
-    public Sprite backgroundImage;
-    public Sprite mainImage;
-    public Sprite typeImage;
 
+    [Range(0, 1)]
+    public double shieldReduction;
+
+
+    // Damages against different kinds of monsters:
+    public int meleeAttackDamage;
+    public int archerAttackDamage;
+    public int flyingAttackDamage;
+
+    // Image of the card
+    public Sprite image;
+
+    public CardDefinition() {
+
+    }
+
+    public CardDefinition(CardDefinition other) {
+        type = other.type;
+        Name = other.Name;
+        maxHealth = other.maxHealth; // .
+        level = other.level; // .
+
+        shieldReduction = other.shieldReduction; // .
+        meleeAttackDamage = other.meleeAttackDamage; // .
+        archerAttackDamage = other.archerAttackDamage; // .
+        flyingAttackDamage = other.flyingAttackDamage; // .
+
+        image = other.image; // .
+    }
 
     // Function called on each card after a new turn
     public void OnNewTurn()
@@ -29,16 +52,11 @@ public class CardDefinition : ScriptableObject
 
     internal static CardDefinition Create(Card card)
     {
-        CardDefinition def = new CardDefinition();
-        def.type = card.type;
-        def.name = card.name;
-        def.hP = card.hP;
-        def.level = card.level;
-        def.attackValue = card.attackValue;
-        def.template = card.cardDefinition.template;
-        def.gamerTeam = card.gamerTeam;
-        def.backgroundImage = card.backgroundImage;
-        def.mainImage = card.mainImage;
+        CardDefinition def = new CardDefinition(card.definition);
+    
+        // TODO if upgraded, should be done directly by changing card definition
+        // This might be redundant
+
         return def;
     }
 }

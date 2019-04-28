@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Name: Wyvern
   m_EditorClassIdentifier: 
   type: 3
-  name: Wyvern
-  hP: 150
+  Name: Wyvern
+  maxHealth: 100
   level: 1
-  attackValue: 15
   initiative: 5
-  template: {fileID: 114634274234859420, guid: 4bbe4768107a7b34e8da027dd4d46064, type: 2}
-  gamerTeam: 1
-  backgroundImage: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  mainImage: {fileID: 21300000, guid: 2cb2383e1f6deb645bb859b632172ba4, type: 3}
-  typeImage: {fileID: 21300000, guid: 26fff04428d17d944b4ab8503b35caa9, type: 3}
+  shieldReduction: 0.3199999928474426
+  meleeAttackDamage: 10
+  archerAttackDamage: 10
+  flyingAttackDamage: 10
+  image: {fileID: 21300000, guid: 2cb2383e1f6deb645bb859b632172ba4, type: 3}

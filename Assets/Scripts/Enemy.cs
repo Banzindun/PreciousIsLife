@@ -5,11 +5,11 @@ using UnityEngine;
 public class Enemy : BoardPlayer {
 
 
-    public void MakeAction(PlayerController player)
+    public override void Play(Card activeCard)
     {
+        base.Play(activeCard);
 
-
-
+        // TODO
     }
 
     override public void RemoveCard(Card card)
