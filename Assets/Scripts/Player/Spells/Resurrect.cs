@@ -5,11 +5,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Resurrect : Spell
 {
-    public override void Cast(PlayerController player, Target target)
+    public override void MissileHit(Card targetCard)
     {
-        Debug.Log("Casting: " + Name);
-        Debug.Log("Targets: " + AllTargetsToString(target));
+        base.MissileHit(targetCard);
 
-        target.getTargets()[0].Ressurect();
+        targetCard.Ressurect();
     }
 }

@@ -14,4 +14,6 @@ MonoBehaviour:
   Name: Ressurect
   TargetType: 1
   TargetTeam: 1
+  MissilePrefab: {fileID: 1712784771219572, guid: b1d137a853814884c99c3d11067532c9,
+    type: 2}
   HealthCost: 10

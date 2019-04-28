@@ -7,11 +7,10 @@ public class SingleDamage : Spell
 {
     public int Damage;
 
-    public override void Cast(PlayerController player, Target target)
+    public override void MissileHit(Card targetCard)
     {
+        base.MissileHit(targetCard);
         Debug.Log("Casting: " + Name);
-        Debug.Log("Targets: " + AllTargetsToString(target));
-
-        target.getTargets()[0].ReceiveDamage(Damage);
+        targetCard.ReceiveDamage(Damage);
     }
 }

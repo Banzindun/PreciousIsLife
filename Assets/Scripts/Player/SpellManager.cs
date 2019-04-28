@@ -16,6 +16,9 @@ public class SpellManager : MonoBehaviour{
 
     public ActionManager actionManager;
 
+    // Parent where we store the missiles
+    public GameObject MissilesParent;
+
     private void Start()
     {
         // To make sure only those I can use are enabled
@@ -67,14 +70,18 @@ public class SpellManager : MonoBehaviour{
     }
 
     public void castSpell(Spell spell, Target target) {
-
-        // Cast the spell and disable it for the rest of the turn
-        spell.Cast(player, target);
+        // Create the missile(s) and release them
+        spell.CreateMissiles(this, MissilesParent, player, target);
+        
+        // Cast will be called from the missile??
+        //spell.Cast(player, target);
 
         // Spend the health
         PlayerState.health -= spell.HealthCost;
         DisableTurn = player.CurrentTurn;
+    }
 
+    public void OnSpellDone() {
         // To filter out those I cannot cast
         DisableSpells();
         EnableSpells();

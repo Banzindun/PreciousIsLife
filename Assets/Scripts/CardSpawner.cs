@@ -39,6 +39,7 @@ public class CardSpawner : MonoBehaviour
         card.alive = true;
 
         card.mainImage.sprite = cardDefinition.image;
+        card.backgroundImage.sprite = cardDefinition.backgroundImage;
 
         Sprite typeImage = meleeImage;
         switch (cardDefinition.type) {
