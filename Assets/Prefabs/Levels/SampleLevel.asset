@@ -14,5 +14,3 @@ MonoBehaviour:
   cardsToBeSpawned:
   - {fileID: 11400000, guid: 37dcf751cd73bd64eb3c893da08ba070, type: 2}
   - {fileID: 11400000, guid: 37dcf751cd73bd64eb3c893da08ba070, type: 2}
-  - {fileID: 11400000, guid: 37dcf751cd73bd64eb3c893da08ba070, type: 2}
-  - {fileID: 11400000, guid: 37dcf751cd73bd64eb3c893da08ba070, type: 2}

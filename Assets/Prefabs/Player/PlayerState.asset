@@ -14,5 +14,4 @@ MonoBehaviour:
   myCards:
   - {fileID: 11400000, guid: 8b0527550bfa6f1489d6ac0eafd9ddb8, type: 2}
   - {fileID: 11400000, guid: 8b0527550bfa6f1489d6ac0eafd9ddb8, type: 2}
-  - {fileID: 11400000, guid: 8b0527550bfa6f1489d6ac0eafd9ddb8, type: 2}
   health: 100
