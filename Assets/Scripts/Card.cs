@@ -65,7 +65,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         if (health > 100)
             health = 100;
 
-        UpdateHealthBar()
+        UpdateHealthBar();
     }
 
     /* Set the starting parameters according to the card class definition */
