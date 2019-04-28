@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114713113751958316}
   m_Layer: 0
   m_Name: CardPrefab
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,6 +221,15 @@ MonoBehaviour:
   typeImage: {fileID: 114311033710798184}
   shieldGO: {fileID: 1253348139610208}
   hPLabel: {fileID: 114778838920465138}
+  slotNumber: 0
+  attackEffect: {fileID: 0}
+  blockEffect: {fileID: 0}
+  waitEffect: {fileID: 0}
+  activeCardEffect: {fileID: 1982853167082070, guid: 6bcd48b9ac91df045a5d72310d4fdbc4,
+    type: 2}
+  deathEffect: {fileID: 0}
+  healEffect: {fileID: 0}
+  damageEffect: {fileID: 0}
 --- !u!114 &114646027508301442
 MonoBehaviour:
   m_ObjectHideFlags: 1

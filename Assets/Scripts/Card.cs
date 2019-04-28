@@ -38,6 +38,20 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public int slotNumber;
 
+    public GameObject attackEffect;
+
+    public GameObject blockEffect;
+
+    public GameObject waitEffect;
+
+    public GameObject activeCardEffect;
+
+    public GameObject deathEffect;
+
+    public GameObject healEffect;
+
+    public GameObject damageEffect;
+
     private void Start()
     {
         UpdateHealthBar();
@@ -143,6 +157,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         // Tell the owner  and gameManager that the card was destroyed
         owner.RemoveCard(this);
         gameManager.RemoveCard(this);
+
+        /*gameObject.AddComponent<TriangleExplosion>();
+        StartCoroutine(gameObject.GetComponent<TriangleExplosion>().SplitMesh(true));*/
 
         // TODO: Death effect/animation
     }
@@ -310,8 +327,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }
     }
 
-    public void HighlightActiveCard() {
+    public void HighlightActiveCard()
+    {
         effectLabel.text = "ActiveCard";
+        //Instantiate(brickParticle, transform.position, Quaternion.identity);
     }
 
 
