@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour {
     public void OnSpellDone() {
 
         ActionManager.DisableActions();
-        ActionManager.EnableActions();
+        ActionManager.EnableActions();  
 
         if (CheckEndConditions())
         {
