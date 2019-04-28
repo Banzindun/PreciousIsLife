@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour {
 
     public GameEvent EnablePlayerInteractionEvent;
 
+    public GameObject warningText;
+
+    public GameObject summonPanel;
+
     // List of all the cards
     private List<Card> allCards;
 
@@ -90,18 +94,24 @@ public class GameManager : MonoBehaviour {
 
         if (PlayerState.cardHolders.Count == 0)
         {
-            return;
+            warningText.SetActive(true);
         }
+        else
+        {
+            warningText.SetActive(false);
 
-        // Get next level
-        Level nextLevel = GameSettings.AllLevels[GameSettings.CurrentLevelIndex];
+            // Get next level
+            Level nextLevel = GameSettings.AllLevels[GameSettings.CurrentLevelIndex];
 
-        // Spawn the cards
-        SpawnPlayerMonsters(PlayerState.cardHolders.ToArray());
-        SpawnEnemyMonsters(nextLevel.toSpawn);
+            // Spawn the cards
+            SpawnPlayerMonsters(PlayerState.cardHolders.ToArray());
+            SpawnEnemyMonsters(nextLevel.toSpawn);
 
-        // Enable all the monsters and start of the game
-        EnableAllCards();
+            // Enable all the monsters and start of the game
+            EnableAllCards();
+
+            summonPanel.SetActive(false);
+        }
     }
 
 
