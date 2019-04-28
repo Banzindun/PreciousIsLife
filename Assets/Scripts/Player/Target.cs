@@ -20,9 +20,12 @@ public class Target {
 
     public TargetType targetType;
 
-    List<Card> targetCards;
+    List<Card> targetCards = new List<Card>();
 
     public void addTarget(Card card) {
+        if (targetCards == null)
+            targetCards = new List<Card>();
+
         targetCards.Add(card);
     }
 

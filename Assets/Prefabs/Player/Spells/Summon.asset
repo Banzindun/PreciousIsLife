@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: Summon
   m_EditorClassIdentifier: 
   Name: Summon
-  TargetType: 0
-  TargetTeam: 0
-  HealthCost: 0
+  TargetType: 1
+  TargetTeam: 1
+  HealthCost: 10

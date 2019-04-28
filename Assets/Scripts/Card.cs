@@ -10,9 +10,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     // Definition of the card
     public CardDefinition definition;
 
-    public int health; // TODO init the health
+    public int health;
 
-    public int level; // TODO init the level
+    public int level;
 
     public bool alive;
 
@@ -36,39 +36,72 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public Text hPLabel;
 
+    public int slotNumber;
+
     private void Start()
     {
         UpdateHealthBar();
     }
 
+
+    public void Heal(int healAmount)
+    {
+        health += healAmount;
+
+        if (health > 100)
+            health = 100;
+    }
+
     /* Set the starting parameters according to the card class definition */
     public void SetCardDefinition(CardDefinition cardDefinition)
     {
-        this.definition = cardDefinition;
-
-
-        health = definition.maxHealth;
-        level = definition.level; // TODO init the level
+        definition = cardDefinition;
+        health = cardDefinition.maxHealth;
+        level = cardDefinition.level; 
     }
 
     public void ReceiveDamage(Card otherCard)
     {
         Debug.Log("Receiving damage.");
 
-        CardDefinition otherDef = otherCard.definition;
-
         // He is attacking me, I receive damage given his type
         // If I have shield, I block something
-        double damageReceived = 0;
-        switch (definition.type) {
+        double damageReceived = GetDamage(otherCard);
+
+        // We have used the shield
+        if (hasShield)
+        {
+            DisableShield();
+        }
+
+        Debug.Log("Receiving " + damageReceived + "damage");
+
+        RemoveHealth((int)damageReceived);
+    }
+
+    public void ReceiveDamage(int damage)
+    {
+        RemoveHealth(damage);
+    }
+
+    /// <summary>
+    /// Damage of other card against me.
+    /// </summary>
+    public double GetDamage(Card card)
+    {
+        CardDefinition def = card.definition;
+
+        double value = 0;
+        switch (definition.type)
+        {
             case CardTypes.Type.Archer:
-                damageReceived = otherDef.archerAttackDamage;
+                value = def.archerAttackDamage;
                 break;
             case CardTypes.Type.Flying:
-                damageReceived = otherDef.flyingAttackDamage;
+                value = def.flyingAttackDamage;
                 break;
             case CardTypes.Type.Melee:
-                damageReceived = otherDef.meleeAttackDamage;
+                value = def.meleeAttackDamage;
                 break;
             default:
                 break;
@@ -76,13 +109,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
         if (hasShield)
         {
-            damageReceived *= definition.shieldReduction;
-            DisableShield();
+            value *= definition.shieldReduction;
         }
 
-        Debug.Log("Receiving " + damageReceived + "damage");
-
-        RemoveHealth((int) damageReceived);
+        return value;
     }
 
     private void RemoveHealth(int damageReceived)
@@ -105,10 +135,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         level++;
     }
-    public void Revival()
-    {
-        alive = true;
-    }
+
     public void Death()
     {
         alive = false;
@@ -127,13 +154,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("OnPointerEnter");
         ActivateHighlight();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("OnPointerExit");
         DisableHighlight();
     }
 
@@ -145,9 +170,42 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             Debug.Log("Player clicked on card: " + definition.Name);
 
-            enemy.OnCardSelected(this);
-            owner.OnCardSelected(this);
+            PlayerController player = gameManager.player;
+
+            if (player.IsInteracting())
+            {
+                if (player.AmITarget(this))
+                {
+                    enemy.OnCardSelected(this);
+                    owner.OnCardSelected(this);
+                }
+            }
         }
+    }
+
+    internal bool isAtFrontLine()
+    {
+        foreach (Card c in owner.Cards)
+        {
+            if (c.slotNumber >= 3)
+            {
+                if (c == this)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    internal bool FrontLineExists()
+    {
+        foreach (Card c in owner.Cards){
+            if (c.slotNumber >= 3) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void ActivateHighlight() {
@@ -160,12 +218,35 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             HighlightActiveCard();
         }
 
-        if (gameManager.player.IsInteracting())
+        PlayerController player = gameManager.player;
+
+        if (player.IsInteracting())
         {
-            if (gameManager.player.AmITarget(this)) {
-                effectLabel.text = "Interactable";
+            if (player.AmITarget(this)) {
+
+                if (player.Casting)
+                {
+                    Spell activeSpell = gameManager.player.activeSpell;
+                    if (activeSpell.TargetType == Target.TargetType.ALL) {
+                        HighlightAllFriendlyCards(activeSpell);
+                    }
+                    else
+                    {
+                        ActivateSpellHighlight(activeSpell);
+                    }
+
+                }
+                else if (gameManager.player.MakingAction) {
+                    // Check if there are soldier in row in the first row that aren't me
+
+                    
+
+                    effectLabel.text = "Interactable";
+                }
+
                 return;
             }
+
 
             // TODO set the highlight
             effectLabel.text = "NonInteractable";
@@ -177,13 +258,56 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }
     }
 
+    private void HighlightAllFriendlyCards(Spell spell)
+    {
+        foreach (Card c in owner.Cards) {
+            c.ActivateSpellHighlight(spell);
+        }
+    }
+
+    private void ActivateSpellHighlight(Spell spell)
+    {
+        effectLabel.text = spell.Name;
+    }
+
     public void DisableHighlight()
     {
         effectLabel.text = "";
 
-        if (isActiveCard) {
+        PlayerController player = gameManager.player;
+
+        if (isActiveCard)
+        {
             HighlightActiveCard();
-        }        
+        }
+
+        if (hasShield) {
+            DisableShieldHighlight();
+        }
+
+        if (player.IsInteracting() && player.AmITarget(this) && player.Casting) {
+            Spell activeSpell = gameManager.player.activeSpell;
+            if (activeSpell.TargetType == Target.TargetType.ALL)
+            {
+                DisableSpellHighlightOnAllFriendlyCards();
+            }
+            else
+            {
+                DisableSpellHighlight();
+            }
+        }
+    }
+
+    private void DisableSpellHighlight()
+    {
+        effectLabel.text = "";
+    }
+
+    private void DisableSpellHighlightOnAllFriendlyCards()
+    {
+        foreach (Card c in owner.Cards) {
+            c.DisableSpellHighlight();
+        }
     }
 
     public void HighlightActiveCard() {
@@ -205,6 +329,40 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     internal void DisableShield() {
         hasShield = false;
+        DisableShieldHighlight();
+    }
+
+    internal void DisableShieldHighlight() {
         shieldGO.SetActive(false);
+    }
+
+
+
+
+    // True if I can kill the other card
+    public bool CanKill(Card card) {
+
+        double myDamage = card.GetDamage(this);
+
+        if (myDamage > card.health) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    internal void Summon()
+    {
+
+        // TODO
+        throw new NotImplementedException();
+    }
+
+    internal void Ressurect()
+    {
+        alive = true;
+
+        // TODO: Again enable the card
     }
 }

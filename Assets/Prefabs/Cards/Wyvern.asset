@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a662c2873e91a4489d988e1f7c23de, type: 3}
   m_Name: Wyvern
   m_EditorClassIdentifier: 
-  type: 3
+  type: 2
   Name: Wyvern
   maxHealth: 100
   level: 1

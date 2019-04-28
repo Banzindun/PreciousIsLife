@@ -9,8 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 289d969d7fa746d4fa52dff4821d53ee, type: 3}
-  m_Name: SampleLevel
+  m_Name: Level2
   m_EditorClassIdentifier: 
-  cardsToBeSpawned:
-  - {fileID: 11400000, guid: 37dcf751cd73bd64eb3c893da08ba070, type: 2}
-  - {fileID: 11400000, guid: 37dcf751cd73bd64eb3c893da08ba070, type: 2}
+  toSpawn:
+  - Position: 1
+    CardDefinition: {fileID: 11400000, guid: d36815fd1e15afa43824df763d827d0f, type: 2}
+  - Position: 4
+    CardDefinition: {fileID: 11400000, guid: d36815fd1e15afa43824df763d827d0f, type: 2}

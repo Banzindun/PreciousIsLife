@@ -8,11 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1702d5bdf211ef0418df47590bee328e, type: 3}
-  m_Name: MultipleHeal
+  m_Script: {fileID: 11500000, guid: 289d969d7fa746d4fa52dff4821d53ee, type: 3}
+  m_Name: Level1
   m_EditorClassIdentifier: 
-  Name: MultipleHeal
-  TargetType: 0
-  TargetTeam: 1
-  HealthCost: 10
-  HealAmount: 10
+  toSpawn:
+  - Position: 1
+    CardDefinition: {fileID: 11400000, guid: 37dcf751cd73bd64eb3c893da08ba070, type: 2}

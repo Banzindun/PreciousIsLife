@@ -12,23 +12,38 @@ public class SpellManager : MonoBehaviour{
 
     public SpellActivator[] spellActivators;
 
+    public int DisableTurn = 0;
+
+    public ActionManager actionManager;
+
+    private void Start()
+    {
+        // To make sure only those I can use are enabled
+        //DisableSpells();
+        //EnableSpells();
+    }
+
     public SpellManager(PlayerController pc) {
         player = pc;
     }
 
     internal void ActivateSpell(SpellActivator spellActivator, Spell spell)
     {
+        if (!isAvailable(spell)) {
+            Debug.LogWarning("Activated spell that is not available.");
+        }
+
         player.OnSpellTrigger(spell);
     }
 
     public bool isAvailable(Spell spell)
     {
-        if (player.Health < spell.HealthCost)
+        if (PlayerState.health < spell.HealthCost)
         {
             return false;
         }
 
-        if (spell.DisableTurn == player.CurrentTurn) {
+        if (DisableTurn == player.CurrentTurn) {
             return false;
         }
 
@@ -55,7 +70,16 @@ public class SpellManager : MonoBehaviour{
 
         // Cast the spell and disable it for the rest of the turn
         spell.Cast(player, target);
-        spell.DisableTurn = player.CurrentTurn;
+
+        // Spend the health
+        PlayerState.health -= spell.HealthCost;
+        DisableTurn = player.CurrentTurn;
+
+        // To filter out those I cannot cast
+        DisableSpells();
+        EnableSpells();
+
+        player.OnSpellDone();
     }
 
     public Spell getSpell(string name) {

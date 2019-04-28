@@ -14,4 +14,5 @@ MonoBehaviour:
   Name: MultipleDamage
   TargetType: 0
   TargetTeam: 0
-  HealthCost: 0
+  HealthCost: 10
+  Damage: 10

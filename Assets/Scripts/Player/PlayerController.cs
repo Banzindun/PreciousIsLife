@@ -5,22 +5,15 @@ using UnityEngine;
 
 public class PlayerController : BoardPlayer
 {
-    // The state of the player
-    public PlayerState playerState;
-
     public SpellManager SpellManager;
 
-    public ActionManager ActionManager;
+    public ActionType actionType;
 
-    public int Health;
+    public bool MakingAction;
 
-    private ActionType actionType;
+    public bool Casting;
 
-    private bool makingAction;
-
-    private bool casting;
-
-    private Spell activeSpell;
+    public Spell activeSpell;
 
     // Use this for initialization
     void Start() {
@@ -34,10 +27,6 @@ public class PlayerController : BoardPlayer
             Debug.Log("Player is resetting actions.");
             InterruptInteraction();
         }
-    }
-
-    public void SetState(PlayerState playerState) {
-        Health = playerState.Health;
     }
 
     public bool canSummon() {
@@ -54,23 +43,23 @@ public class PlayerController : BoardPlayer
     {
         // I do not remove cards for the player
         base.RemoveCard(card);
-
     }
-
 
     public override void OnBattleEnd()
     {
         base.OnBattleEnd();
 
-        List<CardDefinition> cardDefs = new List<CardDefinition>();
+        List<CardDefinitionHolder> cardDefs = new List<CardDefinitionHolder>();
 
-        // Save all the player cards
+        // TODO Save all the player cards
         foreach (Card card in Cards) {
-            cardDefs.Add(CardDefinition.Create(card));
+            if (card.alive)
+            {
+                cardDefs.Add(new CardDefinitionHolder(card.definition));
+            }
         }
 
-        playerState.MyCards = cardDefs.ToArray();
-        playerState.Health = Health;
+        PlayerState.cardHolders = cardDefs;
     }
 
     override public void Play(Card activeCard) {
@@ -84,9 +73,9 @@ public class PlayerController : BoardPlayer
     public void OnSpellTrigger(Spell spell) {
         Debug.Log("Spell triggered: " + spell.Name);
 
-        ActionManager.SpellTriggered();
+        GameManager.ActionManager.SpellTriggered();
 
-        casting = true;
+        Casting = true;
         this.activeSpell = spell;
     }
 
@@ -97,7 +86,7 @@ public class PlayerController : BoardPlayer
         
         // Activate Action selection
         this.actionType = actionType;
-        makingAction = true;
+        MakingAction = true;
 
         if (actionType == ActionType.WAIT || actionType == ActionType.BLOCK) {
             // Those two actions do not need target
@@ -108,14 +97,14 @@ public class PlayerController : BoardPlayer
     override public void OnCardSelected(Card targetCard) {
         Debug.Log("Target card selected: " + targetCard);
 
-        if (makingAction)
+        if (MakingAction)
         {
             GameAction.makeAction(this, actionType, ActiveCard, targetCard);
             return;
             
         }
 
-        if (casting) {
+        if (Casting) {
             Target target = new Target();
 
             if (activeSpell.TargetType == Target.TargetType.ALL)
@@ -130,8 +119,7 @@ public class PlayerController : BoardPlayer
             }
             
             SpellManager.castSpell(activeSpell, target);
-            // TODO move this finished turn deeper to spell casting with some delay
-            FinishedTurn();
+
             return;
         }
     }
@@ -142,16 +130,16 @@ public class PlayerController : BoardPlayer
 
     private void InterruptInteraction() {
 
-        ActionManager.FinishedTurn();
+        GameManager.ActionManager.FinishedTurn();
         SpellManager.FinishedTurn();
 
-        casting = false;
-        makingAction = false;
+        Casting = false;
+        MakingAction = false;
     }
 
     public bool AmITarget(Card card)
     {
-        if (casting) {
+        if (Casting) {
             if (this == card.owner && activeSpell.TargetTeam == Target.TargetTeam.FRIEND) {
                 return true;
             }
@@ -164,10 +152,16 @@ public class PlayerController : BoardPlayer
             return false;
         }
 
-        if (makingAction)
+        if (MakingAction)
         {
             if (this == card.owner)
                 return false;
+
+
+            if (card.FrontLineExists() && !card.isAtFrontLine())
+            {
+                return false;
+            }
 
             // Only action I can be making is Attack, if I am not owner I am targeting an enemy.
 
@@ -179,13 +173,16 @@ public class PlayerController : BoardPlayer
 
     public bool IsInteracting()
     {
-        return casting || makingAction;
+        return Casting || MakingAction;
     }
 
     public override void OnActionDone()
     {
         base.OnActionDone();
-
         FinishedTurn();
+    }
+
+    public void OnSpellDone() {
+        GameManager.OnSpellDone();
     }
 }

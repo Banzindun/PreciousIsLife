@@ -1,16 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ActionsController : MonoBehaviour {
+public class HealthFiller : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public Slider slider;
 	
 	// Update is called once per frame
 	void Update () {
-		
+        slider.value = PlayerState.health/100f;
 	}
 }

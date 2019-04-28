@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class LevelSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -12,18 +14,20 @@ public class LevelSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [Tooltip("Event that happens ")]
     public UnityEvent OnClickEvent;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+    // Use this for initialization
+    void Start () {
+
 	}
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+
+    }
+
+    internal void Disable()
+    {
+        enabled = false;
+        // TODO More effects here
 
     }
 
@@ -35,5 +39,6 @@ public class LevelSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerClick(PointerEventData eventData)
     { 
         OnClickEvent.Invoke();
+
     }
 }

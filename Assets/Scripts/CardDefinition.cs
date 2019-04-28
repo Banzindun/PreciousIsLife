@@ -23,14 +23,34 @@ public class CardDefinition : ScriptableObject
     public int archerAttackDamage;
     public int flyingAttackDamage;
 
+    public CardDefinition nextLevel;
+
     // Image of the card
     public Sprite image;
 
     public CardDefinition() {
 
     }
+    
+    // Function called on each card after a new turn
+    public void OnNewTurn()
+    {
 
-    public CardDefinition(CardDefinition other) {
+    }
+
+    internal static CardDefinition Create(Card card)
+    {
+        CardDefinition def = ScriptableObject.CreateInstance<CardDefinition>();
+        def.Initialize(card.definition);
+
+        // TODO if upgraded, should be done directly by changing card definition
+        // This might be redundant
+
+        return def;
+    }
+
+    private void Initialize(CardDefinition other)
+    {
         type = other.type;
         Name = other.Name;
         maxHealth = other.maxHealth; // .
@@ -42,21 +62,5 @@ public class CardDefinition : ScriptableObject
         flyingAttackDamage = other.flyingAttackDamage; // .
 
         image = other.image; // .
-    }
-
-    // Function called on each card after a new turn
-    public void OnNewTurn()
-    {
-
-    }
-
-    internal static CardDefinition Create(Card card)
-    {
-        CardDefinition def = new CardDefinition(card.definition);
-    
-        // TODO if upgraded, should be done directly by changing card definition
-        // This might be redundant
-
-        return def;
     }
 }

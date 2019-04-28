@@ -5,8 +5,13 @@ using UnityEngine;
 [CreateAssetMenu]
 public class SingleDamage : Spell
 {
+    public int Damage;
+
     public override void Cast(PlayerController player, Target target)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Casting: " + Name);
+        Debug.Log("Targets: " + AllTargetsToString(target));
+
+        target.getTargets()[0].ReceiveDamage(Damage);
     }
 }

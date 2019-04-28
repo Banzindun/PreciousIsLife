@@ -14,4 +14,5 @@ MonoBehaviour:
   Name: BigDamage
   TargetType: 1
   TargetTeam: 0
-  HealthCost: 0
+  HealthCost: 10
+  Damage: 20

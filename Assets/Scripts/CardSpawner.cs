@@ -22,6 +22,13 @@ public class CardSpawner : MonoBehaviour
 
     public Sprite flyingImage;
 
+    [Tooltip("How much offset will the enemy be from its starting spawn position.")]
+    public Vector3 enemyOffset;
+
+    [Tooltip("How much offset will the player be from its starting spawn position.")]
+    public Vector3 playerOffset;
+
+
     /* Set the map parameters and place it on the stage */
     public Card Summon(CardDefinition cardDefinition)
     {
@@ -53,26 +60,30 @@ public class CardSpawner : MonoBehaviour
         return card;
     }
 
-    // Use this for initialization
-    public List<Card> SpawnEnemyCards(BoardPlayer me, BoardPlayer enemy, CardDefinition[] cardsToSpawn)
-    {
-        return SpawnEnemyCards(me, enemy, cardsToSpawn, enemySpawnPoints);
-    }
 
-    private List<Card> SpawnEnemyCards(BoardPlayer me, BoardPlayer enemy, CardDefinition[] cardsToSpawn, GameObject[] spawnPoints)
+    public List<Card> SpawnEnemyCards(BoardPlayer me, BoardPlayer enemy, CardDefinitionHolder[] enemyCardHolders) {
+        return SpawnEnemyCards(me, enemy, enemyCardHolders, enemySpawnPoints, enemyOffset);
+    }
+    
+    private List<Card> SpawnEnemyCards(BoardPlayer me, BoardPlayer enemy, CardDefinitionHolder[] cardHoldersToSpawn, GameObject[] spawnPoints, Vector3 offset)
     {
         List<Card> cards = new List<Card>();
 
-        for (int i = 0; i < cardsToSpawn.Length; i++)
+        for (int i = 0; i < cardHoldersToSpawn.Length; i++)
         {
-            Card card = Summon(cardsToSpawn[i]);
+            CardDefinition cardDefinition = cardHoldersToSpawn[i].CardDefinition;
+            int index = cardHoldersToSpawn[i].Position;
+
+            Card card = Summon(cardDefinition);
             card.owner = me;
             card.enemy = enemy;
             card.gameManager = GameManager;
+            card.slotNumber = index;
 
             GameObject cardGO = card.gameObject;
 
-            cardGO.transform.SetParent(spawnPoints[i].transform, false);
+            cardGO.transform.SetParent(spawnPoints[index].transform, false);
+            cardGO.transform.localPosition = offset;
             cards.Add(card);
         }
 
@@ -80,8 +91,30 @@ public class CardSpawner : MonoBehaviour
     }
 
     // Use this for initialization
-    public List<Card> SpawnPlayerCards(BoardPlayer me, BoardPlayer enemy, CardDefinition[] cardsToSpawn)
+    public List<Card> SpawnPlayerCards(BoardPlayer me, BoardPlayer enemy, CardDefinitionHolder[] cardHolders)
     {
-        return SpawnEnemyCards(me, enemy, cardsToSpawn, playerSpawnPoints);
+        List<Card> cards = new List<Card>();
+
+        for (int i = 0; i < cardHolders.Length; i++)
+        {
+            CardDefinition cardDefinition = cardHolders[i].CardDefinition;
+            int index = cardHolders[i].Position;
+
+            Card card = Summon(cardDefinition);
+            card.owner = me;
+            card.enemy = enemy;
+            card.gameManager = GameManager;
+            card.slotNumber = i;
+
+            GameObject cardGO = card.gameObject;
+
+            cardGO.transform.SetParent(playerSpawnPoints[i].transform, false);
+            cardGO.transform.localPosition = playerOffset;
+            cards.Add(card);
+        }
+
+        return cards;
     }
+
+    // TODO refactor
 }

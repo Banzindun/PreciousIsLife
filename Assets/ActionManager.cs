@@ -2,12 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ActionManager : MonoBehaviour {
 
     public PlayerController player;
 
     public ActionActivator[] actionActivators;
+
+    public AttackBehaviourDefinition AttackBehaviourConstants;
+
+    public GameObject continueButton;
 
     internal void ActivateAction(ActionActivator actionActivator, ActionType actionType)
     {
@@ -27,7 +32,7 @@ public class ActionManager : MonoBehaviour {
         EnableActions();
     }
 
-    private void DisableActions()
+    public void DisableActions()
     {
         foreach (ActionActivator aa in actionActivators)
         {
@@ -35,7 +40,7 @@ public class ActionManager : MonoBehaviour {
         }
     }
 
-    private void EnableActions()
+    public void EnableActions()
     {
         foreach (ActionActivator aa in actionActivators)
         {
@@ -43,4 +48,19 @@ public class ActionManager : MonoBehaviour {
         }
     }
 
+    internal void HideActions()
+    {
+        foreach (ActionActivator aa in actionActivators)
+        {
+            aa.gameObject.SetActive(false);
+        }
+    }
+
+    internal void EnableContinue()
+    {
+        continueButton.SetActive(true);
+        HideActions();
+        GraphicRaycaster raycaster = GetComponent<GraphicRaycaster>();
+        raycaster.enabled = true;
+    }
 }

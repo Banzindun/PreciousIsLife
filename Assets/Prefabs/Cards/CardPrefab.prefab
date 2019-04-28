@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 222233459975140960}
   - component: {fileID: 114204477174253148}
   - component: {fileID: 114634274234859420}
+  - component: {fileID: 114713113751958316}
   m_Layer: 0
   m_Name: CardPrefab
   m_TagString: Untagged
@@ -253,6 +254,32 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114713113751958316
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519203784526194}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e29e6f1a75a02a4ca4002e4294b4a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 2
+  EndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  StartVector: {x: 0, y: 0, z: 0}
+  EndVector: {x: 0, y: 0, z: 0}
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  tweenType: 0
 --- !u!114 &114778838920465138
 MonoBehaviour:
   m_ObjectHideFlags: 1

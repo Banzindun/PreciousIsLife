@@ -33,6 +33,8 @@ public class SpellActivator : MonoBehaviour {
     {
         button = GetComponent<Button>();
         button.interactable = true;
+
+        ihs = GetComponentInChildren<ImageHoverScaler>();
         ihs.enabled = false;
     }
 }

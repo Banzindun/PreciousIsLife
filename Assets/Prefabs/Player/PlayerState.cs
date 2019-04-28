@@ -2,38 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class PlayerState : ScriptableObject {
-    [SerializeField]
-    private CardDefinition[] myCards;
+public static class PlayerState {
+    
+    // Cards the player has at start of the level and then rewritten at the end
+    public static List<CardDefinitionHolder> cardHolders = new List<CardDefinitionHolder>();
 
-    public CardDefinition[] MyCards {
-        set
-        {
-            myCards = value;
-        }
-
-        get
-        {
-            return myCards;
-
-        }
-    }
-
-
-    [SerializeField]
-    private int health;
-
-    public int Health {
-        set
-        {
-            health = value;
-        }
-
-        get
-        {
-            return health;
-        }
-    }
+    // Player health.
+    public static int health = 100;
 
 }

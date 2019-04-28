@@ -11,7 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e17cfb9984768e14cb4a04d022840be4, type: 3}
   m_Name: SingleHeal
   m_EditorClassIdentifier: 
-  Name: 
-  TargetType: 0
-  TargetTeam: 0
-  HealthCost: 0
+  Name: SingleHeal
+  TargetType: 1
+  TargetTeam: 1
+  HealthCost: 10
+  HealAmount: 10

@@ -48,12 +48,13 @@ public static class GameAction {
         if (targetCard.owner == actorCard.owner) {
             return false;
         }
-
-        // TODO attack
+        
         AttackBehaviour ab = actorCard.gameObject.AddComponent<AttackBehaviour>();
         ab.TargetCard = targetCard;
         ab.ActorCard = actorCard;
         ab.Player = player;
+        ab.MovingCardCanvas = player.GameManager.MovingCardCanvas;
+        ab.Initialize(player.GameManager.ActionManager.AttackBehaviourConstants);
 
 
         return true;

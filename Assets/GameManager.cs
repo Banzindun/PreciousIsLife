@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour {
 
     public PlayerController player;
 
+    public ActionManager ActionManager;
+
     public Enemy enemy;
 
     public int turnNumber;
@@ -35,6 +37,14 @@ public class GameManager : MonoBehaviour {
 
     private Card activeCard;
 
+    private int currentEnabledCardCount;
+
+    [SerializeField]
+    [Tooltip("What options do we use for tweaning.")]
+    private TweenOptions tweeningOptions;
+
+    public GameObject MovingCardCanvas;
+
     // Use this for initialization
     void Start()
     {
@@ -45,32 +55,26 @@ public class GameManager : MonoBehaviour {
         // Start with the player disabled
         DisablePlayerInteractions();
 
-        // Get next level
-        Level nextLevel = GameSettings.AllLevels[GameSettings.CurrentLevelIndex];
-
         // Initialize the player
-        player.SetState(GameSettings.PlayerState);
         player.Enemy = enemy;
         enemy.Enemy = player;
         
         // Create the list of all cards
         allCards = new List<Card>();
 
-        SpawnPlayerMonsters(GameSettings.PlayerState.MyCards);
-        SpawnEnemyMonsters(nextLevel.cardsToBeSpawned);
-
         // Show summon dialog if possible
         ShowPlayerSummonDialog();
+        
     }
 
-    private void SpawnEnemyMonsters(CardDefinition[] enemyCards)
+    private void SpawnEnemyMonsters(CardDefinitionHolder[] enemyCardHolders)
     {
         // player.Cards = list of spawned cards
-        enemy.Cards = cardSpawner.SpawnEnemyCards(enemy, player, enemyCards);
+        enemy.Cards = cardSpawner.SpawnEnemyCards(enemy, player, enemyCardHolders);
         allCards.AddRange(enemy.Cards);
     }
 
-    private void SpawnPlayerMonsters(CardDefinition[] playerCards)
+    private void SpawnPlayerMonsters(CardDefinitionHolder[] playerCards)
     {
         player.Cards = cardSpawner.SpawnPlayerCards(player, enemy, playerCards);
         allCards.AddRange(player.Cards);
@@ -83,30 +87,51 @@ public class GameManager : MonoBehaviour {
 
     public void OnPlayerSummonDialogClosed() {
         Debug.Log("Summoning over.");
-        
-        // Summoning over
 
-        // ...
+        // Get next level
+        Level nextLevel = GameSettings.AllLevels[GameSettings.CurrentLevelIndex];
+
+        // Spawn the cards
+        SpawnPlayerMonsters(PlayerState.cardHolders.ToArray());
+        SpawnEnemyMonsters(nextLevel.toSpawn);
 
         // Enable all the monsters and start of the game
-        EnableAllTheMonsters();
+        EnableAllCards();
     }
 
 
-    private void EnableAllTheMonsters()
+    /// <summary>
+    /// Let's the cards slide to its place.
+    /// </summary>
+    private void EnableAllCards()
     {
-        // TODO Enable all the monsters
+        // Activate all the cards and their Tween components
+        foreach (Card c in allCards) {
+            //c.gameObject.SetActive(true);
 
-        OnMonstersEnabled();
+            Tween tween = c.GetComponent<Tween>();
+            tween.Initialize(tweeningOptions);
+            tween.StartVector = c.transform.position;
+            tween.enabled = true;
+            tween.tweenDelegate = (Vector3 position) => c.transform.localPosition = position;
+        }
     }
 
-    public void OnMonstersEnabled()
-    {
-        EnablePlayerInteractions();
+    public void OnCardEnabled() {
+        currentEnabledCardCount++;
 
-        // TODO Start the game
-        StartBattle();
-        
+        if (currentEnabledCardCount == allCards.Count)
+        {
+            // Spawning ended. Tell the game manager
+            OnCardsEnabled();
+        }
+    }
+
+    public void OnCardsEnabled()
+    {
+        Debug.Log("All the cards were spawned!!");
+
+        StartBattle();        
     }
 
     public void StartBattle() {
@@ -128,23 +153,47 @@ public class GameManager : MonoBehaviour {
 
         Debug.Log("Action done.");
 
-        // Check if any player won
-        if (enemy.Lost()) {
-            ShowPlayerResurrectDialog();
-            BattleFinished();
+        if (CheckEndConditions()) {
+
             return;
         }
-
-        // Check if player lost
-        if (player.Lost()) {
-            // End the game
-            ShowGameOverDialog();
-        }
+        
 
         NewTurn();
     }
 
-   
+    public void OnSpellDone() {
+
+        ActionManager.DisableActions();
+        ActionManager.EnableActions();
+
+        if (CheckEndConditions())
+        {
+            return;
+        }
+    }
+
+    private bool CheckEndConditions()
+    {
+        // Check if any player won
+        if (enemy.Lost())
+        {
+            ShowPlayerResurrectDialog();
+            BattleFinished();
+            return true;
+        }
+
+        // Check if player lost
+        if (player.Lost())
+        {
+            // End the game
+            ShowGameOverDialog();
+            return true;
+        }
+
+        return false;
+    }
+
     private void ShowGameOverDialog()
     {
         Debug.Log("Gameover. Showing gameover screen.");
@@ -168,7 +217,6 @@ public class GameManager : MonoBehaviour {
 
         Debug.Log("Initiation order: " + InitiationListToString());
 
-
         activeCard = initiationList[0];
         activeCard.isActiveCard = true;
         initiationList.Remove(activeCard);
@@ -183,8 +231,6 @@ public class GameManager : MonoBehaviour {
         }
 
         activePlayer.Play(activeCard);
-
-        // TODO: Highlight the active card
 
         Debug.Log("Player on turn: " + activePlayer.name);
     }
@@ -227,7 +273,15 @@ public class GameManager : MonoBehaviour {
     }
 
     public void BattleFinished() {
+        Debug.Log("Battle finished.");
 
+        player.OnBattleEnd();
+        enemy.OnBattleEnd();
+
+        // ugh, i guess
+        GameSettings.CurrentLevelIndex++;
+        DisablePlayerInteractions();
+        ActionManager.EnableContinue();
     }
 
     public void EnablePlayerInteractions()

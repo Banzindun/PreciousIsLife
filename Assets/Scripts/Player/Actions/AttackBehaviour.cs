@@ -10,45 +10,45 @@ public class AttackBehaviour : MonoBehaviour {
 
     public BoardPlayer Player;
 
+    public GameObject MovingCardCanvas;
+
+    private Transform oldTransformParent;
+
     private Vector3 originalPosition;
 
     private Vector3 goal;
 
-    private float speed = 800;
+    private TweenOptions forwardTweeningOptions;
 
-    private int targetReachedConstant = 5;
+    private TweenOptions backwardTweeningOptions;
 
-    private float pauseOnTargetReached = 1;
-
-    private float doNotMoveTime = 0;
-    
-
-	// Use this for initialization
-	void Start () {
-        originalPosition = transform.position;
-        goal = TargetCard.transform.position;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        doNotMoveTime -= Time.deltaTime;
-        if (doNotMoveTime > 0)
-            return;
-
-        Debug.Log( "Distance " + Vector3.Distance(transform.position, goal));
-        if (Vector3.Distance(transform.position, goal) <= targetReachedConstant)
-        {
-            TargetReached();
-        }
-        else
-        { 
-            transform.position = Vector3.MoveTowards(transform.position, goal, speed * Time.deltaTime);
-        }
+    public void Initialize(AttackBehaviourDefinition def)
+    {
+        forwardTweeningOptions = def.ForwardTweeningOptions;
+        backwardTweeningOptions = def.BackwardTweeningOptions;
     }
 
-    public void TargetReached() {
+    // Use this for initialization
+    void Start () {
+        originalPosition = transform.position;
+        goal = TargetCard.transform.position;
+
+        Tween tween = GetComponent<Tween>();
+        tween.Initialize(forwardTweeningOptions);
+        tween.EndVector = TargetCard.transform.position; // TODO take the outside of the card
+        tween.StartVector = ActorCard.transform.position;
+        tween.EndEvent.AddListener(OnTargetReached);
+        tween.enabled = true;
+        tween.tweenDelegate = (Vector3 position) => transform.position = position;
+
+        oldTransformParent = transform.parent;
+        transform.SetParent(MovingCardCanvas.transform, true);
+    }
+	
+    public void OnTargetReached() {
         Debug.Log("Attack target reached!");
-        doNotMoveTime = pauseOnTargetReached;
+        
+        // TODO Go just to the side of the card, maybe overlap a bit
         
         // TODO play some attack effect or something
         // TODO play attack sound
@@ -56,6 +56,8 @@ public class AttackBehaviour : MonoBehaviour {
         // If I have reached my original spot:
         if (goal == originalPosition)
         {
+            transform.SetParent(oldTransformParent, true);
+
             // Disable myself
             Destroy(this);
 
@@ -67,7 +69,17 @@ public class AttackBehaviour : MonoBehaviour {
         {
             // Cause the damage
             TargetCard.ReceiveDamage(ActorCard);
+            
+            // Go back
             goal = originalPosition;
+
+            Tween tween = GetComponent<Tween>();
+            tween.Initialize(backwardTweeningOptions);
+            tween.EndVector = originalPosition;
+            tween.StartVector = ActorCard.transform.position;
+            tween.EndEvent.AddListener(OnTargetReached);
+            tween.enabled = true;
+            tween.tweenDelegate = (Vector3 position) => transform.position = position;
         }
     }
 }
