@@ -32,6 +32,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public Image typeImage;
 
+    public Image backgroundImage;
+
     public GameObject shieldGO;
 
     public Text hPLabel;
@@ -51,6 +53,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public GameObject healEffect;
 
     public GameObject damageEffect;
+   
+
 
     private void Start()
     {

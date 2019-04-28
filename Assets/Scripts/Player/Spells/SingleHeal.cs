@@ -7,11 +7,11 @@ public class SingleHeal : Spell
 {
     public int HealAmount;
 
-    public override void Cast(PlayerController player, Target target)
+    public override void MissileHit(Card targetCard)
     {
-        Debug.Log("Casting singleHeal spell.");
-        Debug.Log("Targets: " + AllTargetsToString(target));
-
-        target.getTargets()[0].Heal(HealAmount);
+        base.MissileHit(targetCard);
+        Debug.Log("Casting: " + Name);
+    
+        targetCard.Heal(HealAmount);
     }
 }

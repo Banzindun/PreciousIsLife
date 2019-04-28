@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public abstract class Spell : ScriptableObject {
 
@@ -8,18 +9,26 @@ public abstract class Spell : ScriptableObject {
 
     public Target.TargetTeam TargetTeam;
 
-    //private int disabledTurnNumber = 0;
-
-    /*public int DisableTurn
-    {
-        set { disabledTurnNumber = value; }
-        get { return disabledTurnNumber; }
-    }*/
+    public GameObject MissilePrefab;
 
     [Tooltip("How much health does the spell cost?")]
     public int HealthCost;
 
-    abstract public void Cast(PlayerController player, Target target);
+    [NonSerialized]
+    public int MissilesCount;
+
+    [NonSerialized]
+    public SpellManager SpellManager;
+
+    virtual public void MissileHit(Card targetCard) {
+        MissilesCount--;
+
+        if (MissilesCount <= 0) {
+            SpellManager.OnSpellDone();
+        }
+
+        // The rest should be implemented in other classes
+    }
 
     protected string AllTargetsToString(Target target) {
         string targetsString = "";
@@ -27,5 +36,25 @@ public abstract class Spell : ScriptableObject {
             targetsString += c.definition.Name + " ";
         }
         return targetsString;
+    }
+
+    internal void CreateMissiles(SpellManager spellManager, GameObject missilesParent, PlayerController player, Target target)
+    {
+        this.SpellManager = spellManager;
+        MissilesCount = target.getTargets().Count;
+
+        foreach (Card c in target.getTargets()) {
+            // Create the missile
+            GameObject missile = GameObject.Instantiate(MissilePrefab);
+            missile.transform.SetParent(missilesParent.transform, false);
+            missile.transform.localPosition = Vector3.zero;
+
+            Missile missileComponent = missile.GetComponent<Missile>();
+            missileComponent.target = c;
+            missileComponent.player = player;
+            missileComponent.spell = this;
+
+            missileComponent.Launch();
+        }        
     }
 }

@@ -7,16 +7,11 @@ public class MultipleDamage : Spell
 {
     public int Damage;
 
-    public override void Cast(PlayerController player, Target target)
+    public override void MissileHit(Card targetCard)
     {
-
+        base.MissileHit(targetCard);
         Debug.Log("Casting: " + Name);
-        Debug.Log("Targets: " + AllTargetsToString(target));
-
-        foreach (Card c in target.getTargets())
-        {
-            c.ReceiveDamage(Damage);
-        }
+        targetCard.ReceiveDamage(Damage);
     }
         
 }

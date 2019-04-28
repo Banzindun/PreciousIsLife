@@ -5,11 +5,9 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Summon : Spell
 {
-    public override void Cast(PlayerController player, Target target)
+    public override void MissileHit(Card targetCard)
     {
-        Debug.Log("Casting summon spell.");
-        Debug.Log("Targets: " + AllTargetsToString(target));
-
-        target.getTargets()[0].Summon();
+        base.MissileHit(targetCard);
+        targetCard.Summon();
     }
 }

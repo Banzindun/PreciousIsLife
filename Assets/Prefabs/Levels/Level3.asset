@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toSpawn:
   - Position: 0
-    CardDefinition: {fileID: 11400000, guid: 37dcf751cd73bd64eb3c893da08ba070, type: 2}
+    CardDefinition: {fileID: 11400000, guid: 2276bc7fb23ffbc42bd665e1859547c7, type: 2}
   - Position: 1
-    CardDefinition: {fileID: 11400000, guid: 37dcf751cd73bd64eb3c893da08ba070, type: 2}
+    CardDefinition: {fileID: 11400000, guid: 903f21fb0c5f8bc48ac8f30ba4a23f40, type: 2}
   - Position: 2
-    CardDefinition: {fileID: 11400000, guid: 37dcf751cd73bd64eb3c893da08ba070, type: 2}
+    CardDefinition: {fileID: 11400000, guid: 6fc55bf7aded2b04f9f47ed0ac73804b, type: 2}

@@ -27,6 +27,8 @@ public class CardDefinition : ScriptableObject
 
     // Image of the card
     public Sprite image;
+    public Sprite backgroundImage;
+
 
     public int cardCost;
     public int upgradeCost;

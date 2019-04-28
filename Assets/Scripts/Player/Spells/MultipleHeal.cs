@@ -8,13 +8,10 @@ public class MultipleHeal : Spell
 
     public int HealAmount;
 
-    public override void Cast(PlayerController player, Target target)
+    public override void MissileHit(Card targetCard)
     {
-        Debug.Log("Casting: " + Name);
-        Debug.Log("Targets: " + AllTargetsToString(target));
+        base.MissileHit(targetCard);
 
-        foreach (Card c in target.getTargets()) {
-            c.Heal(HealAmount);
-        }
+        targetCard.Heal(HealAmount);
     }
 }
