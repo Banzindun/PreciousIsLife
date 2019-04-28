@@ -457,7 +457,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 2cb2383e1f6deb645bb859b632172ba4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fe5171801640e1444aa6b39eb2bc8d7d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1340,121 +1340,110 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 756705685}
     m_Modifications:
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_LocalPosition.z
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_LocalRotation.x
       value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_AnchoredPosition.x
       value: -210
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_AnchoredPosition.y
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_SizeDelta.x
       value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_AnchorMin.x
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_AnchorMin.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_AnchorMax.x
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_Pivot.x
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+    - target: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 10
+    - target: {fileID: 1203417161607110, guid: b1efc15819998404096d73574de9d5cd, type: 2}
+      propertyPath: m_Name
+      value: HealingParticleEffect
       objectReference: {fileID: 0}
-    - target: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
-        type: 2}
-      propertyPath: m_LocalScale.z
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 199375001298640894, guid: dd1c6077d56efd74e8753253541ff317,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 1882735566684906, guid: dd1c6077d56efd74e8753253541ff317, type: 2}
+    - target: {fileID: 1203417161607110, guid: b1efc15819998404096d73574de9d5cd, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: dd1c6077d56efd74e8753253541ff317, type: 2}
+  m_SourcePrefab: {fileID: 100100000, guid: b1efc15819998404096d73574de9d5cd, type: 2}
   m_IsPrefabAsset: 0
 --- !u!224 &441397833 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224121972302344492, guid: dd1c6077d56efd74e8753253541ff317,
+  m_CorrespondingSourceObject: {fileID: 224754779213035440, guid: b1efc15819998404096d73574de9d5cd,
     type: 2}
   m_PrefabInternal: {fileID: 441397832}
 --- !u!1 &443571392
@@ -1790,12 +1779,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1185936286}
-  m_Father: {fileID: 878245019}
-  m_RootOrder: 0
+  m_Father: {fileID: 1035221392}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 436, y: -191}
+  m_AnchoredPosition: {x: 36, y: -191}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &560564816
@@ -2792,8 +2781,10 @@ GameObject:
   - component: {fileID: 878245019}
   - component: {fileID: 878245021}
   - component: {fileID: 878245020}
+  - component: {fileID: 878245023}
+  - component: {fileID: 878245022}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Dinozaur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2808,8 +2799,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 560564815}
+  m_Children: []
   m_Father: {fileID: 1035221392}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2837,7 +2827,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 2cb2383e1f6deb645bb859b632172ba4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2852,6 +2842,92 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 878245018}
   m_CullTransparentMesh: 0
+--- !u!114 &878245022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 878245018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 878245020}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 878245023}
+        m_MethodName: summonMonster
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1035221391}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 941853146}
+        m_MethodName: OnPlayerSummonDialogClosed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &878245023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 878245018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69bac63b0bc79c4589c0c2042a02cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardDefiniton: {fileID: 11400000, guid: 4a77d13a0ad9d2049ac641ed24e04281, type: 2}
 --- !u!1 &894938397
 GameObject:
   m_ObjectHideFlags: 0
@@ -3333,7 +3409,7 @@ MonoBehaviour:
   enemy: {fileID: 1314911266}
   turnNumber: 0
   cardSpawner: {fileID: 941853147}
-  exorcismDialog: {fileID: 1035221391}
+  summonDialog: {fileID: 1035221391}
   DisablePlayerInteractionEvent: {fileID: 11400000, guid: 9a5f320edafbff1418c0fdc16fb8f884,
     type: 2}
   EnablePlayerInteractionEvent: {fileID: 11400000, guid: cd4472cca1614d34faf01e12c466e0cd,
@@ -3844,8 +3920,10 @@ GameObject:
   - component: {fileID: 982902312}
   - component: {fileID: 982902314}
   - component: {fileID: 982902313}
+  - component: {fileID: 982902316}
+  - component: {fileID: 982902315}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Meduza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3888,7 +3966,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4eba578ab89b67042af4a5bbb0206d79, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3903,6 +3981,92 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 982902311}
   m_CullTransparentMesh: 0
+--- !u!114 &982902315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 982902311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 982902313}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 982902316}
+        m_MethodName: summonMonster
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1035221391}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 941853146}
+        m_MethodName: OnPlayerSummonDialogClosed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &982902316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 982902311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69bac63b0bc79c4589c0c2042a02cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardDefiniton: {fileID: 11400000, guid: c2adaca165bfa3f4182cbb822b7b2977, type: 2}
 --- !u!1 &986489088
 GameObject:
   m_ObjectHideFlags: 0
@@ -4052,7 +4216,7 @@ GameObject:
   - component: {fileID: 1035221394}
   - component: {fileID: 1035221393}
   m_Layer: 5
-  m_Name: ExorcismPanel
+  m_Name: SummonPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4071,6 +4235,7 @@ RectTransform:
   - {fileID: 878245019}
   - {fileID: 135282337}
   - {fileID: 982902312}
+  - {fileID: 560564815}
   m_Father: {fileID: 2091085898}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

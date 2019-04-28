@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
     public CardSpawner cardSpawner;
 
     // Dialog for summoning and upgrades
-    public GameObject exorcismDialog;
+    public GameObject summonDialog;
 
     public GameEvent DisablePlayerInteractionEvent;
 
@@ -82,11 +82,16 @@ public class GameManager : MonoBehaviour {
 
     public void ShowPlayerSummonDialog() {
         Debug.Log("Trying to show the player's summon dialog.");
-        exorcismDialog.SetActive(true);
+        summonDialog.SetActive(true);
     }
 
     public void OnPlayerSummonDialogClosed() {
         Debug.Log("Summoning over.");
+
+        if (PlayerState.cardHolders.Count == 0)
+        {
+            return;
+        }
 
         // Get next level
         Level nextLevel = GameSettings.AllLevels[GameSettings.CurrentLevelIndex];
@@ -165,7 +170,9 @@ public class GameManager : MonoBehaviour {
     public void OnSpellDone() {
 
         ActionManager.DisableActions();
-        ActionManager.EnableActions();  
+        ActionManager.EnableActions();
+
+        //DisablePlayerInteractions();
 
         if (CheckEndConditions())
         {

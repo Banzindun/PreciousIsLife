@@ -183,6 +183,9 @@ public class PlayerController : BoardPlayer
     }
 
     public void OnSpellDone() {
+        activeSpell = null;
+        Casting = false;
+        MakingAction = false;
         GameManager.OnSpellDone();
     }
 }
