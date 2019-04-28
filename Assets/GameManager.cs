@@ -89,7 +89,8 @@ public class GameManager : MonoBehaviour {
         summonDialog.SetActive(true);
     }
 
-    public void OnPlayerSummonDialogClosed() {
+    public void OnPlayerSummonDialogClosed()
+    {
         Debug.Log("Summoning over.");
 
         if (PlayerState.cardHolders.Count == 0)
