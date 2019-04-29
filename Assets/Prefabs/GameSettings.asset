@@ -11,10 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe0f15824445ef479e4df7aa0b867bd, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  AllLevels:
-  - {fileID: 11400000, guid: bfcde10b744490d48b6d0e3a1f51c85e, type: 2}
-  - {fileID: 11400000, guid: 77086a3a203115e43821b3210f47b80e, type: 2}
-  - {fileID: 11400000, guid: 263ce7132e1990148ad28c168e01a117, type: 2}
-  CurrentLevelIndex: 0
+  AllLevels: []
+  CurrentLevelIndex: 1
   MusicVol: 0
   FxVol: 0

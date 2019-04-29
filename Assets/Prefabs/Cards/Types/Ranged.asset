@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Ranged
   m_EditorClassIdentifier: 
   type: 1
-  backgroundImage: {fileID: 21300000, guid: b2559add9d8aeb649af3a046cbee16f5, type: 3}
+  backgroundImage: {fileID: 21300000, guid: 047a60fe906dc784c922d00930955c1c, type: 3}
   backgroundImageNoStats: {fileID: 21300000, guid: 047a60fe906dc784c922d00930955c1c,
     type: 3}
   typeImage: {fileID: 21300000, guid: cd4a73b0d1c291e4fb25cd67c9b3d649, type: 3}

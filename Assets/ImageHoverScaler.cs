@@ -19,7 +19,6 @@ public class ImageHoverScaler : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public bool interactionEnabled = true;
 
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (interactionEnabled)

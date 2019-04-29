@@ -381,7 +381,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 15
+  m_SortingOrder: 90
   m_TargetDisplay: 0
 --- !u!224 &124989621
 RectTransform:
@@ -587,7 +587,6 @@ GameObject:
   - component: {fileID: 303249670}
   - component: {fileID: 303249669}
   - component: {fileID: 303249668}
-  - component: {fileID: 303249667}
   m_Layer: 5
   m_Name: Continue
   m_TagString: Untagged
@@ -614,17 +613,6 @@ RectTransform:
   m_AnchoredPosition: {x: 61, y: -477}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &303249667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 303249665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 649fcf0b38a5b10438e4b47ab3465f19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &303249668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,8 +652,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 303249667}
-        m_MethodName: setScene
+      - m_Target: {fileID: 468776584}
+        m_MethodName: FadeToLevel
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1365,97 +1353,97 @@ Prefab:
       objectReference: {fileID: 941853146}
     - target: {fileID: 1959860882556208, guid: 313f9f42543e09c4694584e5fc9fe961, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224748505057921484, guid: 313f9f42543e09c4694584e5fc9fe961,
+        type: 2}
+      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224748505057921484, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224748505057921484, guid: 313f9f42543e09c4694584e5fc9fe961,
-        type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224748505057921484, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 203
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224748505057921484, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -165
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224748505057921484, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 406
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224748505057921484, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 330
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224907185520115472, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224907185520115472, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224907185520115472, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 609
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224907185520115472, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -165
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224907185520115472, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 406
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224907185520115472, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 330
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224369051932554772, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224369051932554772, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224369051932554772, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1015
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224369051932554772, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -165
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224369051932554772, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 406
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224369051932554772, guid: 313f9f42543e09c4694584e5fc9fe961,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 330
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 313f9f42543e09c4694584e5fc9fe961, type: 2}
@@ -1516,6 +1504,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5955e7217599e194d9b2eb57d6e08775, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &468776584 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114649196720830834, guid: 5955e7217599e194d9b2eb57d6e08775,
+    type: 2}
+  m_PrefabInternal: {fileID: 468776583}
+  m_Script: {fileID: 11500000, guid: 5a1e0c1355514dc4881619077f910ab3, type: 3}
 --- !u!1 &498400854
 GameObject:
   m_ObjectHideFlags: 0
@@ -3359,6 +3353,7 @@ MonoBehaviour:
     type: 2}
   PlayersTurn: 0
   MovingCardCanvas: {fileID: 124989615}
+  LevelChanger: {fileID: 468776584}
 --- !u!114 &941853147
 MonoBehaviour:
   m_ObjectHideFlags: 0

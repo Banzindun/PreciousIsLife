@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc05ee6a6f7117488fab13bc99e5384, type: 3}
   m_Name: Melee
   m_EditorClassIdentifier: 
-  Name: Melee
-  backgroundImage: {fileID: 21300000, guid: 8f268613c905fa940bf558e9dfc373dd, type: 3}
+  type: 0
+  backgroundImage: {fileID: 21300000, guid: f99ddac6f9f8a9847a45a6dde30f8fd9, type: 3}
   backgroundImageNoStats: {fileID: 21300000, guid: f99ddac6f9f8a9847a45a6dde30f8fd9,
     type: 3}
   typeImage: {fileID: 21300000, guid: e157fba3bff00ba4495a88577117727b, type: 3}

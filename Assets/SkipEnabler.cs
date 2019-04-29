@@ -11,7 +11,7 @@ public class SkipEnabler : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if (gameSettings.CurrentLevelIndex == 0)
+        if (gameSettings.CurrentLevelIndex == 0 || PlayerState.cardHolders.Count == 0)
         {
             button.interactable = false;
         }

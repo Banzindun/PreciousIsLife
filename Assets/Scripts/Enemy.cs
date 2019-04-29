@@ -98,7 +98,7 @@ public class Enemy : BoardPlayer {
         // I do not remove cards for the player
         base.RemoveCard(card);
 
-        // TODO add some delay here
-        Destroy(card.gameObject);
+        card.animator.enabled = true;
+        card.animator.SetTrigger("OnDeath");
     }
 }

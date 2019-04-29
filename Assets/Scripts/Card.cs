@@ -40,12 +40,28 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public Image SpawnPointImage;
 
+    public Animator animator;
+
+    public GameObject ActionEffect;
+
+    public Sprite shieldSprite;
+
+    public Sprite hourglassSprite;
+
     public bool actionTarget = false;
+
+
 
     // Prefab constants
     public float attackEffectDuration;
+
+    
+
     public Color attackEffectColor;
     public Color activeCardColor;
+
+
+    public Text damageDisplayer;
 
     private ImageHoverScaler ihs;
 
@@ -187,6 +203,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void OnPointerEnter(PointerEventData eventData)
     {
         ActivateHighlight();
+        
 
         if (gameManager.player.AmITarget(this))
         {
@@ -299,6 +316,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         backgroundImage.color = actionType.effectColor;
 
+        if (actionType.type == ActionType.TYPE.ATTACK) {
+            damageDisplayer.text = GetDamage(gameManager.player.ActiveCard) + "";
+            damageDisplayer.gameObject.SetActive(true);
+        }
     }
 
     private void HighlightAllFriendlyCards(Spell spell)
@@ -319,7 +340,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void DisableHighlight()
     {
         if (actionTarget)
-            return; 
+            return;
+
+        damageDisplayer.text = "";
+        damageDisplayer.gameObject.SetActive(false);
 
         PlayerController player = gameManager.player;
 
@@ -419,6 +443,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         // TODO: Again enable the card
     }
 
+    public void OnCardDiedEvent() {
+        Destroy(gameObject); // To destroy the card
+    }
+
     public void OnActionDone() {
         actionTarget = false;
         DisableHighlight();
@@ -428,5 +456,27 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void OnMissileHit() {
         actionTarget = false;
         DisableHighlight();
+    }
+
+
+
+    public void OnActionEffectDone() {
+        gameManager.player.OnActionDone();
+    }
+
+    internal void ShieldUp()
+    {
+        ActionEffect.SetActive(true);
+        ActionEffect.GetComponent<Animator>().enabled = true;
+        ActionEffect.GetComponent<Animator>().SetTrigger("Do");
+        ActionEffect.GetComponent<Image>().sprite = shieldSprite;
+    }
+
+    internal void WaitUp()
+    {
+        ActionEffect.SetActive(true);
+        ActionEffect.GetComponent<Animator>().enabled = true;
+        ActionEffect.GetComponent<Animator>().SetTrigger("Do");
+        ActionEffect.GetComponent<Image>().sprite = hourglassSprite;
     }
 }

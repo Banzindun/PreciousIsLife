@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour {
 
     public GameObject MovingCardCanvas;
 
+    public LevelChanger LevelChanger;
+
     // Use this for initialization
     void Start()
     {
@@ -172,7 +174,7 @@ public class GameManager : MonoBehaviour {
 
     private void ShowGameOverDialog()
     {
-        Debug.Log("Gameover. Showing gameover screen.");
+        LevelChanger.FadeToLevel("GameOver");
     }
 
     public void NewTurn() {
@@ -253,6 +255,13 @@ public class GameManager : MonoBehaviour {
 
         // ugh, i guess
         GameSettings.CurrentLevelIndex++;
+
+        if (GameSettings.CurrentLevelIndex >= GameSettings.AllLevels.Length) {
+            // I have won
+            Debug.Log("I have won.");
+            LevelChanger.FadeToLevel("EndScreen");
+        }
+
         DisablePlayerInteractions();
         ActionManager.EnableContinue();
     }

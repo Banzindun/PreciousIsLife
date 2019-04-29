@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Flying
   m_EditorClassIdentifier: 
   type: 2
-  backgroundImage: {fileID: 21300000, guid: 1c1b26f4716e58b4993a2698e330100a, type: 3}
+  backgroundImage: {fileID: 21300000, guid: d68f70b5844895145bc9833582155dca, type: 3}
   backgroundImageNoStats: {fileID: 21300000, guid: d68f70b5844895145bc9833582155dca,
     type: 3}
   typeImage: {fileID: 21300000, guid: 72f5ba7b102aead4b99a28f3852f5444, type: 3}

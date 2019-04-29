@@ -13,10 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: bc68f633deb70ce44a69d0cc98dd1253, type: 2}
   Name: Wyvern
-  maxHealth: 100
+  maxHealth: 25
   level: 1
-  initiative: 10
-  shieldReduction: 0.26600000262260437
+  initiative: 3
+  shieldReduction: 0.20000000298023224
   meleeAttackDamage: 10
   archerAttackDamage: 10
   flyingAttackDamage: 10

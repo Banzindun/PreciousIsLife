@@ -29,17 +29,14 @@ public static class GameAction {
     {
         player.GameManager.AddCardToInitiationQueue(actorCard);
 
-        // TODO add delay and WaitBehaviour
-        player.OnActionDone();
+        actorCard.WaitUp();
     }
 
     private static void Block(BoardPlayer player, Card actorCard)
     {
         actorCard.hasShield = true;
-        actorCard.HighlightShield();
 
-        // TODO add delay and BlockBehaviour
-        player.OnActionDone();
+        actorCard.ShieldUp();
     }
 
     private static bool Attack(BoardPlayer player, Card actorCard, Card targetCard)
