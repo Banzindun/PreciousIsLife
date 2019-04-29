@@ -58,6 +58,7 @@ public class ActionManager : MonoBehaviour {
 
     internal void EnableContinue()
     {
+        GetComponent<GraphicRaycaster>().enabled = true;
         continueButton.SetActive(true);
         HideActions();       
     }

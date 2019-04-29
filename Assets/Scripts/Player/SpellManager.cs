@@ -50,6 +50,7 @@ public class SpellManager : MonoBehaviour{
             return false;
         }
 
+        
         // What other requirements??
         // Check the availability there
 
@@ -64,9 +65,19 @@ public class SpellManager : MonoBehaviour{
             return false;    
         }
 
+        Card card = target.getTargets()[0];
+
+        if (player == card.owner && spell.TargetTeam == Target.TargetTeam.ENEMY)
+        {
+            return false;
+        } else if (player == card.enemy && spell.TargetTeam == Target.TargetTeam.FRIEND)
+        {
+            return false;
+        }
+
         // Something else??
 
-        return true;
+        return spell.IsAvailable(target);
     }
 
     public void castSpell(Spell spell, Target target) {

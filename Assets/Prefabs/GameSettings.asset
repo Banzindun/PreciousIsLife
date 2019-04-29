@@ -11,7 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe0f15824445ef479e4df7aa0b867bd, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  AllLevels: []
-  CurrentLevelIndex: 1
+  AllLevels:
+  - {fileID: 11400000, guid: bfcde10b744490d48b6d0e3a1f51c85e, type: 2}
+  - {fileID: 11400000, guid: 77086a3a203115e43821b3210f47b80e, type: 2}
+  - {fileID: 11400000, guid: 263ce7132e1990148ad28c168e01a117, type: 2}
+  - {fileID: 11400000, guid: 0a26aae4016b532498ba0aac7eb4b202, type: 2}
+  - {fileID: 11400000, guid: fb0957fcce272f3478bddbfb949a243e, type: 2}
+  - {fileID: 11400000, guid: ae3ac47f116b495459fe572e371c25e1, type: 2}
+  - {fileID: 11400000, guid: 8aa0d339fb4e362419ee42f99fcae799, type: 2}
+  CurrentLevelIndex: 0
   MusicVol: 0
   FxVol: 0

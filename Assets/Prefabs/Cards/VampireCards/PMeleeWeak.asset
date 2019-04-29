@@ -9,17 +9,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31a662c2873e91a4489d988e1f7c23de, type: 3}
-  m_Name: PlayerMelee2
+  m_Name: PMeleeWeak
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: ba259a341d651554e85a6dd09b37fe73, type: 2}
-  Name: 
-  maxHealth: 100
-  level: 2
-  initiative: 10
-  shieldReduction: 0.14300000667572021
-  meleeAttackDamage: 10
-  archerAttackDamage: 10
-  flyingAttackDamage: 10
-  nextLevel: {fileID: 0}
-  image: {fileID: 21300000, guid: 2248b5365dd236b489723066e9c118a8, type: 3}
-  cost: 10
+  Name: PMeleeWeak
+  maxHealth: 15
+  level: 1
+  initiative: 2
+  shieldReduction: 0.5
+  meleeAttackDamage: 5
+  archerAttackDamage: 4
+  flyingAttackDamage: 1
+  nextLevel: {fileID: 11400000, guid: 903f21fb0c5f8bc48ac8f30ba4a23f40, type: 2}
+  image: {fileID: 21300000, guid: 591e3a3ec811be34e876d94a7a47bd69, type: 3}
+  cost: 5

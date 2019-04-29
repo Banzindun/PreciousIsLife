@@ -40,6 +40,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public Image SpawnPointImage;
 
+
+
     public Animator animator;
 
     public GameObject ActionEffect;
@@ -440,10 +442,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         alive = true;
 
-        // TODO: Again enable the card
+        animator.enabled = true;
+        animator.SetTrigger("OnRessurect");
     }
 
     public void OnCardDiedEvent() {
+        PlayerState.AddHealth(definition.cost);
         Destroy(gameObject); // To destroy the card
     }
 
@@ -478,5 +482,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         ActionEffect.GetComponent<Animator>().enabled = true;
         ActionEffect.GetComponent<Animator>().SetTrigger("Do");
         ActionEffect.GetComponent<Image>().sprite = hourglassSprite;
+    }
+
+    internal void FakeDie()
+    {
+        animator.enabled = true;
+        animator.SetTrigger("OnFakeDeath");
     }
 }

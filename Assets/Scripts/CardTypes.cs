@@ -18,4 +18,7 @@ public class CardTypes : ScriptableObject
     public Sprite backgroundImageNoStats;
 
     public Sprite typeImage;
+
+    public Sprite HolderBackground;
+
 }

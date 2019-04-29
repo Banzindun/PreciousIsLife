@@ -35,23 +35,31 @@ public class Enemy : BoardPlayer {
     }
 
     private void DoThinking() {
+        bool madeAction = false;
+
         Card killableCard = canKill();
         if (killableCard != null)
         {
             // There is a card I can kill
-            GameAction.makeAction(this, ActionType.TYPE.WAIT, ActiveCard, killableCard);
-            return;
+            GameAction.makeAction(this, ActionType.TYPE.ATTACK, ActiveCard, killableCard);
+            madeAction = true;
         }
 
         if (canBlock())
         {
             GameAction.makeAction(this, ActionType.TYPE.BLOCK, ActiveCard, null);
-            return;
+            madeAction = true;
         }
 
-        // Else select something to attack, even if nothing suits us
-        Card targetCard = FindTarget();
-        GameAction.makeAction(this, ActionType.TYPE.ATTACK, ActiveCard, targetCard);
+        if (!madeAction)
+        {
+            // Else select something to attack, even if nothing suits us
+            Card targetCard = FindTarget();
+            if (targetCard != null)
+            {
+                GameAction.makeAction(this, ActionType.TYPE.ATTACK, ActiveCard, targetCard);
+            }
+        }
 
         thinking = false;
     }
@@ -63,10 +71,14 @@ public class Enemy : BoardPlayer {
         double bestDamage = float.MinValue;
 
         foreach (Card c in Enemy.Cards) {
-            double damage = c.GetDamage(ActiveCard);
-            if (damage > bestDamage) {
-                bestTarget = c;
-                bestDamage = damage;
+            if (c.alive)
+            {
+                double damage = c.GetDamage(ActiveCard);
+                if (damage > bestDamage)
+                {
+                    bestTarget = c;
+                    bestDamage = damage;
+                }
             }
         }
 

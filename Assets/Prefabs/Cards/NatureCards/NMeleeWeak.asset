@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a662c2873e91a4489d988e1f7c23de, type: 3}
+  m_Name: NMeleeWeak
+  m_EditorClassIdentifier: 
+  type: {fileID: 11400000, guid: 230b6f99e8eaf0e4e8ba95797ba6ceb1, type: 2}
+  Name: MeleeWeak
+  maxHealth: 12
+  level: 1
+  initiative: 1
+  shieldReduction: 0.5
+  meleeAttackDamage: 5
+  archerAttackDamage: 3
+  flyingAttackDamage: 1
+  nextLevel: {fileID: 11400000, guid: a2f1466a4fd0b0d4ba63df199d12a665, type: 2}
+  image: {fileID: 21300000, guid: a4829b6b034c87f47a77871bf37af2a2, type: 3}
+  cost: 3

@@ -9,17 +9,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31a662c2873e91a4489d988e1f7c23de, type: 3}
-  m_Name: PlayerFlyer2
+  m_Name: NMeleeStrong
   m_EditorClassIdentifier: 
-  type: {fileID: 11400000, guid: bc68f633deb70ce44a69d0cc98dd1253, type: 2}
-  Name: 
-  maxHealth: 100
+  type: {fileID: 11400000, guid: 230b6f99e8eaf0e4e8ba95797ba6ceb1, type: 2}
+  Name: MeleeStrong
+  maxHealth: 18
   level: 2
-  initiative: 10
-  shieldReduction: 0.14300000667572021
+  initiative: 2
+  shieldReduction: 0.5
   meleeAttackDamage: 10
-  archerAttackDamage: 10
-  flyingAttackDamage: 10
+  archerAttackDamage: 7
+  flyingAttackDamage: 5
   nextLevel: {fileID: 0}
-  image: {fileID: 21300000, guid: b844378494a18884f8e78aad696081f1, type: 3}
-  cost: 10
+  image: {fileID: 21300000, guid: f8832ec4ef372fd44a51951f8de245dc, type: 3}
+  cost: 5

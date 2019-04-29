@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toSpawn:
   - Position: 1
-    CardDefinition: {fileID: 11400000, guid: 6fc55bf7aded2b04f9f47ed0ac73804b, type: 2}
+    CardDefinition: {fileID: 11400000, guid: 73beb2d0c3eeff04e8ccf47605fddce1, type: 2}
   - Position: 4
-    CardDefinition: {fileID: 11400000, guid: 9847da608940cea4493bed6d28543002, type: 2}
+    CardDefinition: {fileID: 11400000, guid: 17697b35bbdd98844995ab5892549ffe, type: 2}

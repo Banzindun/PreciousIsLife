@@ -31,20 +31,12 @@ public class PlayerController : BoardPlayer
         }
     }
 
-    public bool canSummon() {
-        Spell summonSpell = SpellManager.getSpell("Summon");
-
-        if (Cards.Count < 3 && SpellManager.isAvailable(summonSpell)) {
-            return true;
-        }
-
-        return false;
-    }
-
     override public void RemoveCard(Card card)
     {
         // I do not remove cards for the player
         base.RemoveCard(card);
+
+        card.FakeDie();
     }
 
     public override void OnBattleEnd()
@@ -146,14 +138,12 @@ public class PlayerController : BoardPlayer
     public bool AmITarget(Card card)
     {
         if (Casting) {
-            if (this == card.owner && activeSpell.TargetTeam == Target.TargetTeam.FRIEND) {
-                return true;
-            }
+            Target target = new Target();
+            target.addTarget(card);
 
-            if (this == card.enemy && activeSpell.TargetTeam == Target.TargetTeam.ENEMY)
-            {
-                return true;
-            }
+            return SpellManager.isAvailable(target, activeSpell);
+
+
 
             return false;
         }

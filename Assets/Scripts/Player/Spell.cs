@@ -22,6 +22,10 @@ public abstract class Spell : ScriptableObject {
     [NonSerialized]
     public SpellManager SpellManager;
 
+    virtual public bool IsAvailable(Target target) {
+        return true;
+    }
+
     virtual public void MissileHit(Card targetCard) {
         Debug.Log("Missile hit.");
 

@@ -9,17 +9,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31a662c2873e91a4489d988e1f7c23de, type: 3}
-  m_Name: PlayerRanged1
+  m_Name: FlyingStrong
   m_EditorClassIdentifier: 
-  type: {fileID: 11400000, guid: 84c1d7756887d4c47b70bb6abc04c9a2, type: 2}
-  Name: Medusa
-  maxHealth: 100
-  level: 1
+  type: {fileID: 11400000, guid: bc68f633deb70ce44a69d0cc98dd1253, type: 2}
+  Name: FlyingStrong
+  maxHealth: 20
+  level: 2
   initiative: 10
-  shieldReduction: 0.14300000667572021
-  meleeAttackDamage: 10
+  shieldReduction: 0.5
+  meleeAttackDamage: 11
   archerAttackDamage: 10
-  flyingAttackDamage: 10
-  nextLevel: {fileID: 11400000, guid: 681b3b403c5f92a4f9836b9f03dc8799, type: 2}
-  image: {fileID: 21300000, guid: 51172275cd6036442a482e27db1135c1, type: 3}
+  flyingAttackDamage: 8
+  nextLevel: {fileID: 0}
+  image: {fileID: 21300000, guid: b844378494a18884f8e78aad696081f1, type: 3}
   cost: 10

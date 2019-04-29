@@ -20,4 +20,12 @@ public static class PlayerState {
         }
         return null;
     }
+
+    internal static void AddHealth(int cost)
+    {
+        health += cost;
+
+        if (health >= 100)
+            health = 100;
+    }
 }
