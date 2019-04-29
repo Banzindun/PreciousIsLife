@@ -154,7 +154,6 @@ public class GameManager : MonoBehaviour {
         // Check if any player won
         if (enemy.Lost())
         {
-            ShowPlayerResurrectDialog();
             BattleFinished();
             return true;
         }
@@ -173,11 +172,6 @@ public class GameManager : MonoBehaviour {
     private void ShowGameOverDialog()
     {
         Debug.Log("Gameover. Showing gameover screen.");
-    }
-
-    private void ShowPlayerResurrectDialog()
-    {
-        Debug.Log("Player won, trying to show ressuret diaog.");
     }
 
     public void NewTurn() {

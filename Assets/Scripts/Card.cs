@@ -277,9 +277,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 }
                 else if (gameManager.player.MakingAction) {
                     // Check if there are soldier in row in the first row that aren't me
-
+                    EnableActionHighlight(player.actionType);
                     
-
                     effectLabel.text = "Interactable";
                 }
 
@@ -297,16 +296,26 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }
     }
 
+    private void EnableActionHighlight(ActionType actionType)
+    {
+        backgroundImage.color = actionType.effectColor;
+
+    }
+
     private void HighlightAllFriendlyCards(Spell spell)
     {
         foreach (Card c in owner.Cards) {
+
             c.ActivateSpellHighlight(spell);
+            c.GetComponent<ImageHoverScaler>().ManualPointerEnter();
+
         }
     }
 
     private void ActivateSpellHighlight(Spell spell)
     {
         effectLabel.text = spell.Name;
+        backgroundImage.color = spell.effectColor;
     }
 
     public void DisableHighlight()
@@ -324,28 +333,36 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             DisableShieldHighlight();
         }
 
-        if (player.IsInteracting() && player.AmITarget(this) && player.Casting) {
-            Spell activeSpell = gameManager.player.activeSpell;
-            if (activeSpell.TargetType == Target.TargetType.ALL)
+        if (player.IsInteracting() && player.AmITarget(this)){
+            if (player.Casting)
             {
-                DisableSpellHighlightOnAllFriendlyCards();
+                Spell activeSpell = gameManager.player.activeSpell;
+                if (activeSpell.TargetType == Target.TargetType.ALL)
+                {
+                    DisableSpellHighlightOnAllFriendlyCards();
+                }
+                else
+                {
+                    DisableCardHighlight();
+                }
             }
-            else
-            {
-                DisableSpellHighlight();
+            else {
+                DisableCardHighlight();
             }
         }
     }
 
-    private void DisableSpellHighlight()
+    private void DisableCardHighlight()
     {
         effectLabel.text = "";
+        backgroundImage.color = Color.white;
     }
 
     private void DisableSpellHighlightOnAllFriendlyCards()
     {
         foreach (Card c in owner.Cards) {
-            c.DisableSpellHighlight();
+            c.DisableCardHighlight();
+            c.GetComponent<ImageHoverScaler>().ManualPointerExit();
         }
     }
 
@@ -390,14 +407,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }
 
         return false;
-    }
-
-
-    internal void Summon()
-    {
-
-        // TODO
-        throw new NotImplementedException();
     }
 
     internal void Ressurect()

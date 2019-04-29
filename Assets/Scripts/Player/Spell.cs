@@ -11,6 +11,8 @@ public abstract class Spell : ScriptableObject {
 
     public GameObject MissilePrefab;
 
+    public Color effectColor;
+
     [Tooltip("How much health does the spell cost?")]
     public int HealthCost;
 
@@ -21,9 +23,12 @@ public abstract class Spell : ScriptableObject {
     public SpellManager SpellManager;
 
     virtual public void MissileHit(Card targetCard) {
+        Debug.Log("Missile hit.");
+
         MissilesCount--;
 
         if (MissilesCount <= 0) {
+            Debug.Log("Spell done.");
             SpellManager.OnSpellDone();
         }
 

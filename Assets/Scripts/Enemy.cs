@@ -14,19 +14,19 @@ public class Enemy : BoardPlayer {
         Card killableCard = canKill();
         if (killableCard != null) {
             // There is a card I can kill
-            GameAction.makeAction(this, ActionType.ATTACK, activeCard, killableCard);
+            GameAction.makeAction(this, ActionType.TYPE.WAIT, activeCard, killableCard);
             return;
         }
 
         if (canBlock())
         {
-            GameAction.makeAction(this, ActionType.BLOCK, activeCard, null);
+            GameAction.makeAction(this, ActionType.TYPE.BLOCK, activeCard, null);
             return;
         }
 
         // Else select something to attack, even if nothing suits us
         Card targetCard = FindTarget();
-        GameAction.makeAction(this, ActionType.ATTACK, activeCard, targetCard);
+        GameAction.makeAction(this, ActionType.TYPE.ATTACK, activeCard, targetCard);
     }
 
     private Card FindTarget()

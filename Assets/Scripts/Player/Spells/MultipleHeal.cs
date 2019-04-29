@@ -10,8 +10,9 @@ public class MultipleHeal : Spell
 
     public override void MissileHit(Card targetCard)
     {
-        base.MissileHit(targetCard);
+        
 
         targetCard.Heal(HealAmount);
+        base.MissileHit(targetCard);
     }
 }

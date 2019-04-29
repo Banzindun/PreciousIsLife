@@ -9,9 +9,10 @@ public class SingleHeal : Spell
 
     public override void MissileHit(Card targetCard)
     {
-        base.MissileHit(targetCard);
+        
         Debug.Log("Casting: " + Name);
     
         targetCard.Heal(HealAmount);
+        base.MissileHit(targetCard);
     }
 }

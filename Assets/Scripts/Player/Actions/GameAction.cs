@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class GameAction {
-    public static void makeAction(BoardPlayer player, ActionType actionType, Card actorCard, Card targetCard) {
+    public static void makeAction(BoardPlayer player, ActionType.TYPE actionType, Card actorCard, Card targetCard) {
         player.GameManager.DisablePlayerInteractions();
 
         switch (actionType) {
-            case ActionType.ATTACK:
+            case ActionType.TYPE.ATTACK:
                 Attack(player, actorCard, targetCard);
                 break;
 
-            case ActionType.BLOCK:
+            case ActionType.TYPE.BLOCK:
                 Block(player, actorCard);
                 break;
 
-            case ActionType.WAIT:
+            case ActionType.TYPE.WAIT:
                 Wait(player, actorCard);
                 break;
         }

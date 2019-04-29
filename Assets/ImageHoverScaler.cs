@@ -27,13 +27,18 @@ public class ImageHoverScaler : MonoBehaviour, IPointerEnterHandler, IPointerExi
         sizingTo = false;
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    public void ManualPointerEnter()
+    {
+        sizingTo = true;
+    }
+
+    public void ManualPointerExit()
+    {
+        sizingTo = false;
+    }
+
+    // Update is called once per frame
+    void Update () {
         float wantedScale;
 
         if (sizingTo)

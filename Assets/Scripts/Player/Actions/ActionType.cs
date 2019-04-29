@@ -2,8 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ActionType {
-    ATTACK,
-    BLOCK,
-    WAIT
+[CreateAssetMenu]
+public class ActionType : ScriptableObject {
+    public enum TYPE
+    {
+        ATTACK,
+        BLOCK,
+        WAIT
+    }
+
+    public TYPE type;
+
+    public Color effectColor;
+    
 }

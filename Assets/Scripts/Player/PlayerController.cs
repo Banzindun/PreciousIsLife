@@ -80,7 +80,7 @@ public class PlayerController : BoardPlayer
     }
 
     public void OnActionTrigger(ActionType actionType) {
-        Debug.Log("Action triggered: " + actionType.ToString());
+        Debug.Log("Action triggered: " + actionType.type.ToString());
 
         SpellManager.ActionTriggered();
         
@@ -88,9 +88,9 @@ public class PlayerController : BoardPlayer
         this.actionType = actionType;
         MakingAction = true;
 
-        if (actionType == ActionType.WAIT || actionType == ActionType.BLOCK) {
+        if (actionType.type == ActionType.TYPE.WAIT || actionType.type == ActionType.TYPE.BLOCK) {
             // Those two actions do not need target
-            GameAction.makeAction(this, actionType, ActiveCard, null);
+            GameAction.makeAction(this, actionType.type, ActiveCard, null);
         }
     }
 
@@ -99,7 +99,7 @@ public class PlayerController : BoardPlayer
 
         if (MakingAction)
         {
-            GameAction.makeAction(this, actionType, ActiveCard, targetCard);
+            GameAction.makeAction(this, actionType.type, ActiveCard, targetCard);
             return;
             
         }

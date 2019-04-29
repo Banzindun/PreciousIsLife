@@ -16,5 +16,6 @@ MonoBehaviour:
   TargetTeam: 0
   MissilePrefab: {fileID: 1335019498765420, guid: 1f415b62e572e6142b50f5bd550f8ae5,
     type: 2}
+  effectColor: {r: 0.9056604, g: 0.2776789, b: 0.2776789, a: 1}
   HealthCost: 10
   Damage: 10

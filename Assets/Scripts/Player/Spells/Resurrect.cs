@@ -7,8 +7,9 @@ public class Resurrect : Spell
 {
     public override void MissileHit(Card targetCard)
     {
-        base.MissileHit(targetCard);
+        
 
         targetCard.Ressurect();
+        base.MissileHit(targetCard);
     }
 }
