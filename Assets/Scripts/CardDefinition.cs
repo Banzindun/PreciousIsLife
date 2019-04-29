@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class CardDefinition : ScriptableObject
 {
     // Constants:
-    public CardTypes.Type type;
+    public CardTypes type;
     public string Name;
     public int maxHealth;
     public int level;
@@ -27,11 +27,10 @@ public class CardDefinition : ScriptableObject
 
     // Image of the card
     public Sprite image;
-    public Sprite backgroundImage;
 
+    // Cost to upgrade/summon (upgrade for level 2s)
+    public int cost;
 
-    public int cardCost;
-    public int upgradeCost;
 
     public CardDefinition() {
 

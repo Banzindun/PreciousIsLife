@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardTypes : MonoBehaviour
+[CreateAssetMenu]
+public class CardTypes : ScriptableObject
 {
-    public enum Type   // List of unit types
-    {
-        Melee,
-        Archer,
-        Flying
-    }
+    public string Name;
+
+    public Sprite backgroundImage;
+
+    public Sprite backgroundImageNoStats;
+
+    public Sprite typeImage;
 }

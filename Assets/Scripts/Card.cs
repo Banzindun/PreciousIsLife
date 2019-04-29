@@ -40,6 +40,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public int slotNumber;
 
+    public Image SpawnPointImage;
+
     public GameObject attackEffect;
 
     public GameObject blockEffect;
@@ -53,7 +55,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public GameObject healEffect;
 
     public GameObject damageEffect;
-   
+
 
 
     private void Start()
@@ -114,15 +116,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         CardDefinition def = card.definition;
 
         double value = 0;
-        switch (definition.type)
+        switch (definition.type.Name)
         {
-            case CardTypes.Type.Archer:
+            case "Archer":
                 value = def.archerAttackDamage;
                 break;
-            case CardTypes.Type.Flying:
+            case "Flying":
                 value = def.flyingAttackDamage;
                 break;
-            case CardTypes.Type.Melee:
+            case "Melee":
                 value = def.meleeAttackDamage;
                 break;
             default:
@@ -172,6 +174,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         // TODO: Death effect/animation
     }
 
+    private void OnDestroy()
+    {
+        if (SpawnPointImage != null)
+            SpawnPointImage.enabled = true; 
+    }
+
     public CardDefinition GetCardDefinitionSignature()
     {
         return CardDefinition.Create(this);
@@ -180,6 +188,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void OnPointerEnter(PointerEventData eventData)
     {
         ActivateHighlight();
+    }
+
+    public void OnCardEnabled()
+    {
+        SpawnPointImage.enabled = false;
+        
     }
 
     public void OnPointerExit(PointerEventData eventData)

@@ -25,11 +25,7 @@ public class GameManager : MonoBehaviour {
     public GameEvent DisablePlayerInteractionEvent;
 
     public GameEvent EnablePlayerInteractionEvent;
-
-    public GameObject warningText;
-
-    public GameObject summonPanel;
-
+    
     // List of all the cards
     private List<Card> allCards;
 
@@ -43,9 +39,7 @@ public class GameManager : MonoBehaviour {
 
     private int currentEnabledCardCount;
 
-    [SerializeField]
-    [Tooltip("What options do we use for tweaning.")]
-    private TweenOptions tweeningOptions;
+
 
     public GameObject MovingCardCanvas;
 
@@ -93,55 +87,19 @@ public class GameManager : MonoBehaviour {
     {
         Debug.Log("Summoning over.");
 
-        if (PlayerState.cardHolders.Count == 0)
-        {
-            warningText.SetActive(true);
-        }
-        else
-        {
-            warningText.SetActive(false);
+        // Get next level
+        Level nextLevel = GameSettings.AllLevels[GameSettings.CurrentLevelIndex];
 
-            // Get next level
-            Level nextLevel = GameSettings.AllLevels[GameSettings.CurrentLevelIndex];
+        // Spawn the cards
+        SpawnPlayerMonsters(PlayerState.cardHolders.ToArray());
+        SpawnEnemyMonsters(nextLevel.toSpawn);
 
-            // Spawn the cards
-            SpawnPlayerMonsters(PlayerState.cardHolders.ToArray());
-            SpawnEnemyMonsters(nextLevel.toSpawn);
-
-            // Enable all the monsters and start of the game
-            EnableAllCards();
-
-            summonPanel.SetActive(false);
-        }
+        // Enable all the monsters and start of the game
+        cardSpawner.EnableAllCards(allCards);
     }
 
 
-    /// <summary>
-    /// Let's the cards slide to its place.
-    /// </summary>
-    private void EnableAllCards()
-    {
-        // Activate all the cards and their Tween components
-        foreach (Card c in allCards) {
-            //c.gameObject.SetActive(true);
-
-            Tween tween = c.GetComponent<Tween>();
-            tween.Initialize(tweeningOptions);
-            tween.StartVector = c.transform.position;
-            tween.enabled = true;
-            tween.tweenDelegate = (Vector3 position) => c.transform.localPosition = position;
-        }
-    }
-
-    public void OnCardEnabled() {
-        currentEnabledCardCount++;
-
-        if (currentEnabledCardCount == allCards.Count)
-        {
-            // Spawning ended. Tell the game manager
-            OnCardsEnabled();
-        }
-    }
+   
 
     public void OnCardsEnabled()
     {

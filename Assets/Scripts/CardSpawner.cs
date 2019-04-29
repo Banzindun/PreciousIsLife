@@ -14,19 +14,19 @@ public class CardSpawner : MonoBehaviour
 
     public GameObject cardPrefab;
 
-    // Images:
-
-    public Sprite meleeImage;
-
-    public Sprite archerImage;
-
-    public Sprite flyingImage;
-
     [Tooltip("How much offset will the enemy be from its starting spawn position.")]
     public Vector3 enemyOffset;
 
     [Tooltip("How much offset will the player be from its starting spawn position.")]
     public Vector3 playerOffset;
+
+    [SerializeField]
+    [Tooltip("Spawning card options.")]
+    private TweenOptions enablingCardsOptions;
+
+    private int enabledCardCount = 0;
+
+    private int allCardsCount = 0;
 
 
     /* Set the map parameters and place it on the stage */
@@ -39,23 +39,9 @@ public class CardSpawner : MonoBehaviour
         card.alive = true;
 
         card.mainImage.sprite = cardDefinition.image;
-        card.backgroundImage.sprite = cardDefinition.backgroundImage;
+        card.backgroundImage.sprite = cardDefinition.type.backgroundImage;
 
-        Sprite typeImage = meleeImage;
-        switch (cardDefinition.type) {
-            case CardTypes.Type.Archer:
-                typeImage = archerImage;
-                break;
-            case CardTypes.Type.Flying:
-                typeImage = flyingImage;
-                break;
-            case CardTypes.Type.Melee:
-                typeImage = meleeImage;
-                break;
-            default:
-                break;
-        }
-
+        Sprite typeImage = cardDefinition.type.typeImage;
         card.typeImage.sprite = typeImage;
 
         return card;
@@ -83,6 +69,8 @@ public class CardSpawner : MonoBehaviour
 
             GameObject cardGO = card.gameObject;
 
+            card.SpawnPointImage = spawnPoints[index].GetComponent<Image>();
+
             cardGO.transform.SetParent(spawnPoints[index].transform, false);
             cardGO.transform.localPosition = offset;
             cards.Add(card);
@@ -99,13 +87,14 @@ public class CardSpawner : MonoBehaviour
         for (int i = 0; i < cardHolders.Length; i++)
         {
             CardDefinition cardDefinition = cardHolders[i].CardDefinition;
-            int index = cardHolders[i].Position;
-
+            
             Card card = Summon(cardDefinition);
             card.owner = me;
             card.enemy = enemy;
             card.gameManager = GameManager;
             card.slotNumber = i;
+
+            card.SpawnPointImage = playerSpawnPoints[i].GetComponent<Image>();
 
             GameObject cardGO = card.gameObject;
 
@@ -117,5 +106,39 @@ public class CardSpawner : MonoBehaviour
         return cards;
     }
 
-    // TODO refactor
+
+    /// <summary>
+    /// Let's the cards slide to its place.
+    /// </summary>
+    public void EnableAllCards(List<Card> allCards)
+    {
+
+        enabledCardCount = 0;
+        allCardsCount = allCards.Count;
+
+
+        // Activate all the cards and their Tween components
+        foreach (Card c in allCards)
+        {
+            //c.gameObject.SetActive(true);
+
+            Tween tween = c.GetComponent<Tween>();
+            tween.Initialize(enablingCardsOptions);
+            tween.StartVector = c.transform.position;
+            tween.enabled = true;
+            tween.tweenDelegate = (Vector3 position) => c.transform.localPosition = position;
+            tween.EndEvent.AddListener(c.OnCardEnabled);
+        }
+    }
+
+    public void OnCardEnabled()
+    {
+        enabledCardCount++;
+
+        if (enabledCardCount == allCardsCount)
+        {
+            // Spawning ended. Tell the game manager
+            GameManager.OnCardsEnabled();
+        }
+    }
 }

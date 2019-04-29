@@ -1,34 +1,96 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardSummoner : MonoBehaviour
 {
     public CardDefinition cardDefiniton;
-    public GameSetting levelController;
-    public GameObject summonPanel;
 
-    public void summonMonster()
+    public Image cardBackground;
+    public Image cardImage;
+    public Text cardCost;
+
+    public Button upgradeButton;
+    public Button summonButton;
+
+    // The one that will be spawned/upgraded to etc.
+    public CardDefinition activeCard;
+
+    private void Start()
     {
-        PlayerState.cardHolders.Add(new CardDefinitionHolder(cardDefiniton));
-        PlayerState.health -= cardDefiniton.cardCost;
+        // Check if the player has some unit of the type of the card definition
+        CardDefinition def = PlayerState.GetCardOfType(cardDefiniton.type);
+        
+
+        if (def == null) {
+            // Didn't find ... can summon
+            EnableSummon();
+            DisableUpgrade();
+
+            activeCard = cardDefiniton;
+        } else {
+            // Found one
+            if (def.level == 2) {
+                // Max level
+                DisableUpgrade();
+                activeCard = def;                
+            } else {
+                EnableUpgrade();
+                activeCard = cardDefiniton.nextLevel;
+            }
+
+            DisableSummon();
+        }
+
+        // Check that the player's health is sufficent
+        SetupCard(activeCard);
+
+        if (PlayerState.health < activeCard.cost) {
+            DisableSummon();
+        }
     }
 
-    public void upgradeMonster(CardDefinition oldOne)
+    private void SetupCard(CardDefinition def)
     {
-        if (levelController.CurrentLevelIndex == 0)
-        {
-            summonPanel.SetActive(true);
-        }
-        else
-        {
-            summonPanel.SetActive(false);
-            PlayerState.cardHolders.Remove(new CardDefinitionHolder(oldOne));
-            PlayerState.cardHolders.Add(new CardDefinitionHolder(cardDefiniton));
-            PlayerState.health -= cardDefiniton.upgradeCost;
-        }
+        cardBackground.sprite = def.type.backgroundImageNoStats;
+        cardCost.text = def.cost + "";
+        cardImage.sprite = def.image;
 
-        // TODO check if possible,
+        
+    }
 
+    private void DisableUpgrade()
+    {
+        upgradeButton.interactable = false;
+    }
+
+    private void DisableSummon()
+    {
+        summonButton.interactable = false;
+    }
+
+    private void EnableSummon()
+    {
+        summonButton.interactable = true;
+    }
+
+    private void EnableUpgrade()
+    {
+        upgradeButton.interactable = true;
+    }
+
+    public void Summon()
+    {
+        PlayerState.cardHolders.Add(new CardDefinitionHolder(activeCard));
+        PlayerState.health -= cardDefiniton.cost;
+    }
+
+    public void Upgrade()
+    {
+        PlayerState.cardHolders.Remove(new CardDefinitionHolder(cardDefiniton));
+        PlayerState.cardHolders.Add(new CardDefinitionHolder(activeCard));
+        PlayerState.health -= cardDefiniton.cost;
     }
 }

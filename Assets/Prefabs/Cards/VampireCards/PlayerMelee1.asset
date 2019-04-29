@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a662c2873e91a4489d988e1f7c23de, type: 3}
   m_Name: PlayerMelee1
   m_EditorClassIdentifier: 
-  type: 0
+  type: {fileID: 11400000, guid: ba259a341d651554e85a6dd09b37fe73, type: 2}
   Name: 
   maxHealth: 100
   level: 1
@@ -22,6 +22,4 @@ MonoBehaviour:
   flyingAttackDamage: 10
   nextLevel: {fileID: 11400000, guid: 903f21fb0c5f8bc48ac8f30ba4a23f40, type: 2}
   image: {fileID: 21300000, guid: 591e3a3ec811be34e876d94a7a47bd69, type: 3}
-  backgroundImage: {fileID: 21300000, guid: f99ddac6f9f8a9847a45a6dde30f8fd9, type: 3}
-  cardCost: 10
-  upgradeCost: 10
+  cost: 0

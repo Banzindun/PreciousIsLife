@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,4 +11,13 @@ public static class PlayerState {
     // Player health.
     public static int health = 100;
 
+    public static CardDefinition GetCardOfType(CardTypes type)
+    {
+
+        foreach (CardDefinitionHolder c in cardHolders) {
+            if (c.CardDefinition.type == type)
+                return c.CardDefinition;
+        }
+        return null;
+    }
 }
