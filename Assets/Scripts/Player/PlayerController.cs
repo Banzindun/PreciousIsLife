@@ -15,6 +15,8 @@ public class PlayerController : BoardPlayer
 
     public Spell activeSpell;
 
+    private Card targetCard;
+
     // Use this for initialization
     void Start() {
 
@@ -96,12 +98,13 @@ public class PlayerController : BoardPlayer
 
     override public void OnCardSelected(Card targetCard) {
         Debug.Log("Target card selected: " + targetCard);
+        this.targetCard = targetCard;
 
         if (MakingAction)
         {
+            targetCard.actionTarget = true;
             GameAction.makeAction(this, actionType.type, ActiveCard, targetCard);
             return;
-            
         }
 
         if (Casting) {
@@ -112,10 +115,12 @@ public class PlayerController : BoardPlayer
                 foreach (Card c in targetCard.owner.Cards)
                 {
                     target.addTarget(c);
+                    c.actionTarget = true;
                 }
             }
             else {
                 target.addTarget(targetCard);
+                targetCard.actionTarget = true;
             }
             
             SpellManager.castSpell(activeSpell, target);
@@ -126,6 +131,7 @@ public class PlayerController : BoardPlayer
 
     private void FinishedTurn() {
         InterruptInteraction();
+        targetCard = null;
     }
 
     private void InterruptInteraction() {
@@ -179,6 +185,7 @@ public class PlayerController : BoardPlayer
     public override void OnActionDone()
     {
         base.OnActionDone();
+
         FinishedTurn();
     }
 

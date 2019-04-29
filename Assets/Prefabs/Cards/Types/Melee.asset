@@ -15,4 +15,4 @@ MonoBehaviour:
   backgroundImage: {fileID: 21300000, guid: 8f268613c905fa940bf558e9dfc373dd, type: 3}
   backgroundImageNoStats: {fileID: 21300000, guid: f99ddac6f9f8a9847a45a6dde30f8fd9,
     type: 3}
-  typeImage: {fileID: 21300000, guid: d5e849b3b6b433c4c876ba348d982f93, type: 3}
+  typeImage: {fileID: 21300000, guid: e157fba3bff00ba4495a88577117727b, type: 3}

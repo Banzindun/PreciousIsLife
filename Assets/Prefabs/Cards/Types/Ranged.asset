@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc05ee6a6f7117488fab13bc99e5384, type: 3}
   m_Name: Ranged
   m_EditorClassIdentifier: 
-  Name: Ranged
+  type: 1
   backgroundImage: {fileID: 21300000, guid: b2559add9d8aeb649af3a046cbee16f5, type: 3}
   backgroundImageNoStats: {fileID: 21300000, guid: 047a60fe906dc784c922d00930955c1c,
     type: 3}
-  typeImage: {fileID: 21300000, guid: cb60ac6507d8878448a4a22c293db428, type: 3}
+  typeImage: {fileID: 21300000, guid: cd4a73b0d1c291e4fb25cd67c9b3d649, type: 3}

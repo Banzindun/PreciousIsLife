@@ -25,6 +25,8 @@ public abstract class Spell : ScriptableObject {
     virtual public void MissileHit(Card targetCard) {
         Debug.Log("Missile hit.");
 
+        targetCard.OnMissileHit();
+
         MissilesCount--;
 
         if (MissilesCount <= 0) {

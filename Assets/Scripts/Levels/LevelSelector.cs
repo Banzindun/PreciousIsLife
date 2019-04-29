@@ -14,31 +14,49 @@ public class LevelSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [Tooltip("Event that happens ")]
     public UnityEvent OnClickEvent;
 
-    // Use this for initialization
-    void Start () {
+    public bool interactionEnabled = true;
 
-	}
+    
+    private void Start()
+    {
+        
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
 
+        if (interactionEnabled) {
+            // Scale up or light it up
+            GetComponent<ImageHoverScaler>().ManualPointerEnter();
+        }
     }
 
     internal void Disable()
     {
-        enabled = false;
+        interactionEnabled = false;
+
+        Image image = GetComponent<Image>();
+
+        Color imageColor = image.color;
+        imageColor.a = 0.5f;
+        image.color = imageColor;
         // TODO More effects here
 
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-
+        if (interactionEnabled)
+        {
+            GetComponent<ImageHoverScaler>().ManualPointerExit();
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
-    { 
-        OnClickEvent.Invoke();
-
+    {
+        if (interactionEnabled)
+        {
+            OnClickEvent.Invoke();
+        }
     }
 }

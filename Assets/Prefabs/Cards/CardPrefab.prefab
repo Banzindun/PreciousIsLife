@@ -127,9 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39fa1711243ce454386dbff1bcb3ea28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toScale: 1.2
+  toScale: 1.1
   fromScale: 1
   ChangeSpeed: 5
+  interactionEnabled: 0
 --- !u!114 &114204477174253148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,7 +232,6 @@ MonoBehaviour:
   owner: {fileID: 0}
   enemy: {fileID: 0}
   gameManager: {fileID: 0}
-  effectLabel: {fileID: 114646027508301442}
   mainImage: {fileID: 114439546962660846}
   typeImage: {fileID: 114311033710798184}
   backgroundImage: {fileID: 114204477174253148}
@@ -239,13 +239,10 @@ MonoBehaviour:
   hPLabel: {fileID: 114778838920465138}
   slotNumber: 0
   SpawnPointImage: {fileID: 0}
-  attackEffect: {fileID: 0}
-  blockEffect: {fileID: 0}
-  waitEffect: {fileID: 0}
-  activeCardEffect: {fileID: 0}
-  deathEffect: {fileID: 0}
-  healEffect: {fileID: 1203417161607110, guid: b1efc15819998404096d73574de9d5cd, type: 2}
-  damageEffect: {fileID: 0}
+  actionTarget: 0
+  attackEffectDuration: 1.5
+  attackEffectColor: {r: 0.764151, g: 0, b: 0, a: 1}
+  activeCardColor: {r: 1, g: 0.84578747, b: 0.0141509175, a: 1}
 --- !u!114 &114646027508301442
 MonoBehaviour:
   m_ObjectHideFlags: 1

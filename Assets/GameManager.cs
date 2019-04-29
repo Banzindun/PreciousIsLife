@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour {
 
     private int currentEnabledCardCount;
 
+    public bool PlayersTurn = false;
 
 
     public GameObject MovingCardCanvas;
@@ -190,6 +191,8 @@ public class GameManager : MonoBehaviour {
         activeCard = initiationList[0];
         activeCard.isActiveCard = true;
         initiationList.Remove(activeCard);
+
+        PlayersTurn = activeCard.owner == player;
         activeCard.HighlightActiveCard();
 
         Debug.Log("Active card: " + activeCard.definition.Name);

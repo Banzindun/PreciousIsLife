@@ -26,8 +26,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public GameManager gameManager;
 
-    public Text effectLabel;
-
     public Image mainImage;
 
     public Image typeImage;
@@ -42,25 +40,21 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public Image SpawnPointImage;
 
-    public GameObject attackEffect;
+    public bool actionTarget = false;
 
-    public GameObject blockEffect;
+    // Prefab constants
+    public float attackEffectDuration;
+    public Color attackEffectColor;
+    public Color activeCardColor;
 
-    public GameObject waitEffect;
-
-    public GameObject activeCardEffect;
-
-    public GameObject deathEffect;
-
-    public GameObject healEffect;
-
-    public GameObject damageEffect;
-
+    private ImageHoverScaler ihs;
 
 
     private void Start()
     {
         UpdateHealthBar();
+
+        ihs = GetComponent<ImageHoverScaler>();
     }
 
 
@@ -68,12 +62,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         health += healAmount;
 
-        UpdateHealthBar();
-
-        if (health > 100)
+        if (health >= 100)
             health = 100;
 
-        //Instantiate(healEffect, transform.position, Quaternion.identity);
+        UpdateHealthBar();
     }
 
     /* Set the starting parameters according to the card class definition */
@@ -103,6 +95,13 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         RemoveHealth((int)damageReceived);
     }
 
+    public void OnBeeingAttacked() {
+        AttackEffect attackEffect = gameObject.AddComponent<AttackEffect>();
+        attackEffect.mainImage = mainImage;
+        attackEffect.duration = attackEffectDuration;
+        attackEffect.effectColor = attackEffectColor;
+    }
+
     public void ReceiveDamage(int damage)
     {
         RemoveHealth(damage);
@@ -116,15 +115,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         CardDefinition def = card.definition;
 
         double value = 0;
-        switch (definition.type.Name)
+        switch (definition.type.type)
         {
-            case "Archer":
+            case CardTypes.TYPE.RANGED:
                 value = def.archerAttackDamage;
                 break;
-            case "Flying":
+            case CardTypes.TYPE.FLYING:
                 value = def.flyingAttackDamage;
                 break;
-            case "Melee":
+            case CardTypes.TYPE.MELEE:
                 value = def.meleeAttackDamage;
                 break;
             default:
@@ -188,6 +187,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void OnPointerEnter(PointerEventData eventData)
     {
         ActivateHighlight();
+
+        if (gameManager.player.AmITarget(this))
+        {
+            ihs.ManualPointerEnter();
+        }
     }
 
     public void OnCardEnabled()
@@ -199,6 +203,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void OnPointerExit(PointerEventData eventData)
     {
         DisableHighlight();
+        ihs.ManualPointerExit();
     }
 
 
@@ -252,7 +257,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             HighlightShield();
         }
 
-        if (isActiveCard) {
+        if (isActiveCard && gameManager.PlayersTurn) {
             // Set the highlight for the active card
             HighlightActiveCard();
         }
@@ -278,21 +283,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 else if (gameManager.player.MakingAction) {
                     // Check if there are soldier in row in the first row that aren't me
                     EnableActionHighlight(player.actionType);
-                    
-                    effectLabel.text = "Interactable";
                 }
 
                 return;
             }
 
-
-            // TODO set the highlight
-            effectLabel.text = "NonInteractable";
-
             if (isActiveCard)
                 return;
         } else {
-            effectLabel.text = "HP Displayed";
+            // TODO: Do something when hovered over ?? E.g. the rotation??
         }
     }
 
@@ -314,19 +313,22 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     private void ActivateSpellHighlight(Spell spell)
     {
-        effectLabel.text = spell.Name;
         backgroundImage.color = spell.effectColor;
     }
 
     public void DisableHighlight()
     {
-        effectLabel.text = "";
+        if (actionTarget)
+            return; 
 
         PlayerController player = gameManager.player;
 
-        if (isActiveCard)
+        if (isActiveCard && gameManager.PlayersTurn)
         {
             HighlightActiveCard();
+        }
+        else {
+            DisableCardHighlight();
         }
 
         if (hasShield) {
@@ -352,10 +354,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }
     }
 
+    // Disables bacgkround color
     private void DisableCardHighlight()
     {
-        effectLabel.text = "";
-        backgroundImage.color = Color.white;
+        if (backgroundImage != null)
+            backgroundImage.color = Color.white;
     }
 
     private void DisableSpellHighlightOnAllFriendlyCards()
@@ -368,8 +371,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void HighlightActiveCard()
     {
-        effectLabel.text = "ActiveCard";
-        //Instantiate(activeCardEffect, transform.position, Quaternion.identity);
+        if (gameManager.PlayersTurn)
+            backgroundImage.color = activeCardColor;
     }
 
 
@@ -414,5 +417,16 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         alive = true;
 
         // TODO: Again enable the card
+    }
+
+    public void OnActionDone() {
+        actionTarget = false;
+        DisableHighlight();
+
+    }
+
+    public void OnMissileHit() {
+        actionTarget = false;
+        DisableHighlight();
     }
 }

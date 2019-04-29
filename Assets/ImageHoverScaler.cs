@@ -17,14 +17,23 @@ public class ImageHoverScaler : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField]
     private float ChangeSpeed = 5f;
 
+    public bool interactionEnabled = true;
+
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        sizingTo = true;
+        if (interactionEnabled)
+        {
+            sizingTo = true;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        sizingTo = false;
+        if (interactionEnabled)
+        {
+            sizingTo = false;
+        }
     }
 
     public void ManualPointerEnter()

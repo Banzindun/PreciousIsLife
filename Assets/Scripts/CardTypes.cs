@@ -5,7 +5,13 @@ using UnityEngine;
 [CreateAssetMenu]
 public class CardTypes : ScriptableObject
 {
-    public string Name;
+    public enum TYPE {
+        MELEE, 
+        RANGED,
+        FLYING
+    };
+
+    public TYPE type;
 
     public Sprite backgroundImage;
 

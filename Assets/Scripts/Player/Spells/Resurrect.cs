@@ -7,7 +7,7 @@ public class Resurrect : Spell
 {
     public override void MissileHit(Card targetCard)
     {
-        
+        PlayerState.health -= HealthCost;
 
         targetCard.Ressurect();
         base.MissileHit(targetCard);

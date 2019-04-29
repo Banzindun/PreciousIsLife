@@ -69,7 +69,9 @@ public class AttackBehaviour : MonoBehaviour {
         {
             // Cause the damage
             TargetCard.ReceiveDamage(ActorCard);
-            
+            TargetCard.OnBeeingAttacked();
+            TargetCard.OnActionDone();
+
             // Go back
             goal = originalPosition;
 

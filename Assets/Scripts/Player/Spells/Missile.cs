@@ -28,6 +28,7 @@ public class Missile : MonoBehaviour {
 
     public void OnTargetReached() {
         spell.MissileHit(target);
+       
 
         // Destroy the missile
         Destroy(gameObject);

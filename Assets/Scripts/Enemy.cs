@@ -7,26 +7,53 @@ public class Enemy : BoardPlayer {
 
     public float blockChance;
 
+    public float thinkingPeriod;
+
+    private float timer;
+
+    private bool thinking = false;
+
     public override void Play(Card activeCard)
     {
         base.Play(activeCard);
 
+        thinking = true;
+        timer = thinkingPeriod;
+    }
+
+    private void Update()
+    {
+        if (thinking)
+        {
+            timer -= Time.deltaTime;
+
+            if (timer <= 0)
+            {
+                DoThinking();
+            }
+        }
+    }
+
+    private void DoThinking() {
         Card killableCard = canKill();
-        if (killableCard != null) {
+        if (killableCard != null)
+        {
             // There is a card I can kill
-            GameAction.makeAction(this, ActionType.TYPE.WAIT, activeCard, killableCard);
+            GameAction.makeAction(this, ActionType.TYPE.WAIT, ActiveCard, killableCard);
             return;
         }
 
         if (canBlock())
         {
-            GameAction.makeAction(this, ActionType.TYPE.BLOCK, activeCard, null);
+            GameAction.makeAction(this, ActionType.TYPE.BLOCK, ActiveCard, null);
             return;
         }
 
         // Else select something to attack, even if nothing suits us
         Card targetCard = FindTarget();
-        GameAction.makeAction(this, ActionType.TYPE.ATTACK, activeCard, targetCard);
+        GameAction.makeAction(this, ActionType.TYPE.ATTACK, ActiveCard, targetCard);
+
+        thinking = false;
     }
 
     private Card FindTarget()
