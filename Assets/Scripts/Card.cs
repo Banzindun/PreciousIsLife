@@ -442,7 +442,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         Debug.Log("On ressurect.");
         alive = true;
-        health = definition.maxHealth/2;
+
+        health = 0;
+        Heal(definition.maxHealth / 2);
+        
         Debug.Log("On ressurect:" + health);
         //animator.enabled = true;
         //animator.SetTrigger("OnRessurect");
