@@ -135,7 +135,6 @@ public class GameManager : MonoBehaviour {
             return;
         }
         
-
         NewTurn();
     }
 
@@ -236,7 +235,7 @@ public class GameManager : MonoBehaviour {
     private void InitializeInitiationList()
     {
         // Sort cards by initiation
-        List<Card> sortedCards = allCards.OrderBy(card => card.definition.initiative).ToList();
+        List<Card> sortedCards = allCards.OrderByDescending(card => card.definition.initiative).ToList();
 
         // Add them to the list with queue beeing first
         initiationList = new List<Card>();

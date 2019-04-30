@@ -13,10 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toSpawn:
   - Position: 0
-    CardDefinition: {fileID: 11400000, guid: eeebfbb082ead5c45a2a2369745b5133, type: 2}
+    CardDefinition: {fileID: 11400000, guid: 73beb2d0c3eeff04e8ccf47605fddce1, type: 2}
   - Position: 1
     CardDefinition: {fileID: 11400000, guid: 759db588a107c284fb7ec6941e6a09b7, type: 2}
   - Position: 2
-    CardDefinition: {fileID: 11400000, guid: eeebfbb082ead5c45a2a2369745b5133, type: 2}
+    CardDefinition: {fileID: 11400000, guid: 73beb2d0c3eeff04e8ccf47605fddce1, type: 2}
   - Position: 3
     CardDefinition: {fileID: 11400000, guid: a2f1466a4fd0b0d4ba63df199d12a665, type: 2}

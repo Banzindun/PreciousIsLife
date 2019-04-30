@@ -61,10 +61,6 @@ public class SpellManager : MonoBehaviour{
         if (!isAvailable(spell))
             return false;
 
-        if (target.targetTeam != spell.TargetTeam) {
-            return false;    
-        }
-
         Card card = target.getTargets()[0];
 
         if (player == card.owner && spell.TargetTeam == Target.TargetTeam.ENEMY)

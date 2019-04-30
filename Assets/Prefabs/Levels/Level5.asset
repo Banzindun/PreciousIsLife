@@ -15,7 +15,7 @@ MonoBehaviour:
   - Position: 0
     CardDefinition: {fileID: 11400000, guid: eeebfbb082ead5c45a2a2369745b5133, type: 2}
   - Position: 1
-    CardDefinition: {fileID: 11400000, guid: 461c69891c0a35145ba943e20e705136, type: 2}
+    CardDefinition: {fileID: 11400000, guid: 759db588a107c284fb7ec6941e6a09b7, type: 2}
   - Position: 2
     CardDefinition: {fileID: 11400000, guid: eeebfbb082ead5c45a2a2369745b5133, type: 2}
   - Position: 4

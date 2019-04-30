@@ -40,9 +40,12 @@ public class CardSpawner : MonoBehaviour
 
         card.mainImage.sprite = cardDefinition.image;
         card.backgroundImage.sprite = cardDefinition.type.backgroundImage;
+        
 
         Sprite typeImage = cardDefinition.type.typeImage;
         card.typeImage.sprite = typeImage;
+
+        card.cardTags.sprite = cardDefinition.type.HolderBackground;
 
         return card;
     }

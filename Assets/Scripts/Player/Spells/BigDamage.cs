@@ -9,8 +9,9 @@ public class BigDamage : Spell
 
     public override void MissileHit(Card targetCard)
     {
-        base.MissileHit(targetCard);
+        
         Debug.Log("Casting: " + Name);
         targetCard.ReceiveDamage(Damage);
+        base.MissileHit(targetCard);
     }
 }

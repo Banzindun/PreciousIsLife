@@ -140,12 +140,9 @@ public class PlayerController : BoardPlayer
         if (Casting) {
             Target target = new Target();
             target.addTarget(card);
+            
 
             return SpellManager.isAvailable(target, activeSpell);
-
-
-
-            return false;
         }
 
         if (MakingAction)

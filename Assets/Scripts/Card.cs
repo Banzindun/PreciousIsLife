@@ -40,6 +40,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public Image SpawnPointImage;
 
+    public Image cardTags;
+
 
 
     public Animator animator;
@@ -80,8 +82,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         health += healAmount;
 
-        if (health >= 100)
-            health = 100;
+        if (health >= definition.maxHealth)
+            health = definition.maxHealth;
 
         UpdateHealthBar();
     }
@@ -110,7 +112,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
         Debug.Log("Receiving " + damageReceived + "damage");
 
-        RemoveHealth((int)damageReceived);
+        RemoveHealth((int) damageReceived);
     }
 
     public void OnBeeingAttacked() {
@@ -401,8 +403,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             backgroundImage.color = activeCardColor;
     }
 
-
-
     public void NewRound()
     {
         // Reset the shield
@@ -440,10 +440,16 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     internal void Ressurect()
     {
+        Debug.Log("On ressurect.");
         alive = true;
+        health = definition.maxHealth/2;
+        Debug.Log("On ressurect:" + health);
+        //animator.enabled = true;
+        //animator.SetTrigger("OnRessurect");
+        //backgroundImage.color = Color.white;
 
-        animator.enabled = true;
-        animator.SetTrigger("OnRessurect");
+        gameManager.AddCard(this);
+        gameManager.player.Cards.Add(this);
     }
 
     public void OnCardDiedEvent() {
@@ -454,15 +460,13 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void OnActionDone() {
         actionTarget = false;
         DisableHighlight();
-
     }
 
     public void OnMissileHit() {
         actionTarget = false;
         DisableHighlight();
     }
-
-
+    
 
     public void OnActionEffectDone() {
         gameManager.player.OnActionDone();
@@ -486,7 +490,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     internal void FakeDie()
     {
-        animator.enabled = true;
-        animator.SetTrigger("OnFakeDeath");
+        Debug.Log("Faking death.");
+        //animator.SetTrigger("OnFakeDeath");
     }
 }

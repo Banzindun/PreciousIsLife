@@ -17,9 +17,9 @@ MonoBehaviour:
   level: 2
   initiative: 4
   shieldReduction: 0.5
-  meleeAttackDamage: 11
-  archerAttackDamage: 9
-  flyingAttackDamage: 10
+  meleeAttackDamage: 7
+  archerAttackDamage: 5
+  flyingAttackDamage: 7
   nextLevel: {fileID: 0}
   image: {fileID: 21300000, guid: e6a553327c38c30408c9b23ec4916518, type: 3}
   cost: 5

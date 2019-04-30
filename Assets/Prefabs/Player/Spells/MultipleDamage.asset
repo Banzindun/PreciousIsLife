@@ -18,4 +18,4 @@ MonoBehaviour:
     type: 2}
   effectColor: {r: 0.9056604, g: 0.2776789, b: 0.2776789, a: 1}
   HealthCost: 10
-  Damage: 10
+  Damage: 4

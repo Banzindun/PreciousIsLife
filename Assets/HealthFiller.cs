@@ -55,7 +55,7 @@ public class HealthFiller : MonoBehaviour {
             text.color = healthLostColor;
         }
         else {
-            text.text = value + "";
+            text.text = "+" + value;
             text.color = healthGainedColor;
         }
 

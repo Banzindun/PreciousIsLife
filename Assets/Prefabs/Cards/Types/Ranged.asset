@@ -16,3 +16,4 @@ MonoBehaviour:
   backgroundImageNoStats: {fileID: 21300000, guid: 047a60fe906dc784c922d00930955c1c,
     type: 3}
   typeImage: {fileID: 21300000, guid: cd4a73b0d1c291e4fb25cd67c9b3d649, type: 3}
+  HolderBackground: {fileID: 21300000, guid: 4282f00618ed21b4ea97dbacb2a99d18, type: 3}

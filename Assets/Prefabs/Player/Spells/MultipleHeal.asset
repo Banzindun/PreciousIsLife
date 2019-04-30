@@ -17,5 +17,5 @@ MonoBehaviour:
   MissilePrefab: {fileID: 1712784771219572, guid: b1d137a853814884c99c3d11067532c9,
     type: 2}
   effectColor: {r: 0, g: 0.5377358, b: 0.09692761, a: 1}
-  HealthCost: 10
-  HealAmount: 10
+  HealthCost: 8
+  HealAmount: 4
